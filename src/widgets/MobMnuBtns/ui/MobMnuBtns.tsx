@@ -4,36 +4,42 @@ import { cn } from "@/utils/cn"
 import { Call } from './Call'
 import { Chat } from './Chat'
 import { useState } from 'react'
+import { Menu } from './Menu'
 
 
 interface IMobMnuBtns {
     className?: string
 }
 
-export type activeModalType = "call" | "chat" | ""
+export type activeModalType = "call" | "chat" | "menu" | ""
 
 export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
     const [activeModal, setactiveModal] = useState<activeModalType>('');
-    const disableModal = (type: activeModalType) => {
-        console.log(type);
+
+
+    const buttonHandler = (val: activeModalType) => {
         setactiveModal("")
+        setactiveModal(val)
+        console.log("handler parent");
     }
-    
+
+    console.log(activeModal);
+
     return (
-        <div className={cn('fixed bottom-0 right-2 flex flex-col translate-y-0 mix-blend-difference gap-3 !z-[1000000000]', className)}>
+        <div className={cn('fixed bottom-4 right-2 flex flex-col translate-y-0 mix-blend-difference gap-3 !z-[1000000]', className)}>
          
-            <button className={cn("text-white flex flex-col items-center justify-center gap-[6px]", className)} onClick={() => setactiveModal("call")}>
+            <button className={cn("text-white flex flex-col items-center justify-center gap-[6px]")} onClick={() => buttonHandler("call")}>
                 <Image src='/assets/images/tel.svg' width={20} height={20} alt='Drivovo phone ico' />
                 <span className='text-xs'>Call</span>
             </button>   
-            <button className={cn("text-white flex flex-col items-center justify-center gap-[6px]", className)} onClick={() => setactiveModal("chat")}>
+            <button className={cn("text-white flex flex-col items-center justify-center gap-[6px]")} onClick={() => buttonHandler("chat")}>
                 <Image src='/assets/images/chat.svg' width={20} height={20} alt='Drivovo chat ico' />
                 <span className='text-xs'>Chat</span>
             </button> 
-            {activeModal === "call" && <Call disableModal={disableModal} />}
-            {activeModal === "chat" && <Chat disableModal={disableModal} />}
-            
-            
+
+            <Call isActive={activeModal === "call"} disableModal={()=>setactiveModal("")} />
+            <Chat isActive={activeModal === "chat"} disableModal={()=>setactiveModal("")} />
+            <Menu isActive={activeModal === "menu"} disableModal={()=>setactiveModal("")} />
             
             <div className="text-white flex flex-col items-center justify-center gap-[6px]">
                 <Image src='/assets/images/calc.svg' width={20} height={20} alt='Drivovo calc ico' />
@@ -43,10 +49,10 @@ export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
                 <Image src='/assets/images/price.svg' width={20} height={20} alt='Drivovo price ico' />
                 <span className='text-xs'>Price</span>
             </div>
-            <div className="text-white flex flex-col items-center justify-center gap-[6px]">
+            <button className="text-white flex flex-col items-center justify-center gap-[6px]" onClick={() => buttonHandler("menu")}>
                 <Image src='/assets/images/menu.svg' width={20} height={20} alt='Drivovo price ico' />
                 <span className='text-xs'>Menu</span>
-            </div>
+            </button>
         </div>
     )
 }

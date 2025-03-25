@@ -145,12 +145,33 @@
   padding-right: 0;
 }
 /* styles.css */
-.PopoverContent {
-	transform-origin: var(--radix-popover-content-transform-origin);
-	animation: scaleIn 0.5s ease-out;
+
+.communicationModal {
+  width: calc(100% - 74px);
+  background-color: #000;
+  margin-left: 16px;
+  padding: 12px;
+  
+  border-radius: 12px;
+  transition: all 0.3s;
+	/* animation: animModal 0.5s ease-out; */
+  position: fixed;
+  bottom: 16px;
+  left: 0;
+  transform: translateY(200%);
+}
+.activeModal {
+  transform: translateY(0)!important;
 }
 
-@keyframes scaleIn {
+
+
+.deactiveModal {
+	animation: deAnimModal 0.5s ease-out;
+}
+
+
+@keyframes animModal {
 	from {
 		opacity: 0;
 		transform: translateY(200%);
@@ -158,5 +179,16 @@
 	to {
 		opacity: 1;
 		transform: translateY(0);
+	}
+}
+
+@keyframes deAnimModal {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+    transform: translateY(200%);
 	}
 }

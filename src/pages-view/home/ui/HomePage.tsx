@@ -1,6 +1,11 @@
-import { ModeToggler } from "@/shared/ui/modeToggler"
-  
+import { ModeToggler } from "@/shared/ui/modeToggler";
+import { Block1 } from "./sections/Block1";
+import { FirstWindow } from "@/features/intersections";
+
+
 export function HomePage () {
+    
+
     return (
         <main>
             <section className="w-full min-h-[100vh] firstBaner flex flex-col   items-center justify-center pr-[72px] pl-4 text-white">
@@ -11,6 +16,9 @@ export function HomePage () {
             <ModeToggler />
             <p className="dark:text-white text-[#333]">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa quos mollitia nihil laboriosam totam? Esse itaque, aperiam pariatur quia facere dignissimos minima ad suscipit cupiditate, doloribus libero minus nostrum! Similique.</p>
             <div className="bg-black dark:bg-white dark:text-black text-white h-[300px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non consectetur esse, atque eos unde dolore iste ipsum dolorum quis voluptatum labore nostrum aut repudiandae veniam blanditiis neque ipsa sapiente obcaecati.</div>
+
+            <Block1 />
+            <FirstWindow/>
             <div className="bg-white dark:bg-black dark:text-white h-[300px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non consectetur esse, atque eos unde dolore iste ipsum dolorum quis voluptatum labore nostrum aut repudiandae veniam blanditiis neque ipsa sapiente obcaecati.</div>
             <div className="bg-black dark:bg-white dark:text-black text-white h-[300px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non consectetur esse, atque eos unde dolore iste ipsum dolorum quis voluptatum labore nostrum aut repudiandae veniam blanditiis neque ipsa sapiente obcaecati.</div>
             <div className="bg-white dark:bg-black dark:text-white h-[300px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non consectetur esse, atque eos unde dolore iste ipsum dolorum quis voluptatum labore nostrum aut repudiandae veniam blanditiis neque ipsa sapiente obcaecati.</div>
