@@ -9,7 +9,7 @@ interface ICall {
     disableModal: () => void
 }
 
-export const Menu:React.FC<ICall> = ({  isActive, disableModal}) => {
+export const Menu:React.FC<ICall> = ({ isActive, disableModal}) => {
     const [isVisible, setIsVisible] = useState(false)
     const ref = useRef(null);
     useClickAway(ref, () => {

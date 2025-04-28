@@ -1,11 +1,11 @@
 'use client'
 import { useIntersectionSwithes } from '@/features/intersections/actions/intersectionSlice';
 import { useEffect } from 'react';
-import { useIntersectionObserver } from 'usehooks-ts'
+import { useIntersectionObserver } from 'usehooks-ts';
 
 export const Block1:React.FC = () => {
 
-    const {activeBlockHandler} = useIntersectionSwithes()
+    const {activeBlockHandler} = useIntersectionSwithes();
 
     const { isIntersecting, ref } = useIntersectionObserver({
         threshold: 0.8,
@@ -13,9 +13,9 @@ export const Block1:React.FC = () => {
 
       useEffect(()=>{
         if(isIntersecting){
-            activeBlockHandler("firstWindow")
+            activeBlockHandler("firstWindow");
         }else{
-            activeBlockHandler("")
+            activeBlockHandler("");
         }
         console.log("Block 1  ---  isIntersectingisIntersectingisIntersecting");
       }, [isIntersecting, activeBlockHandler])

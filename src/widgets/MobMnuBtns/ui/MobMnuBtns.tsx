@@ -5,13 +5,14 @@ import { Call } from './Call'
 import { Chat } from './Chat'
 import { useState } from 'react'
 import { Menu } from './Menu'
+import { CalcSlider } from '@/features/calcSlider'
 
 
 interface IMobMnuBtns {
     className?: string
 }
 
-export type activeModalType = "call" | "chat" | "menu" | ""
+export type activeModalType = "call" | "chat" | "menu" | "calc" | "";
 
 export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
     const [activeModal, setactiveModal] = useState<activeModalType>('');
@@ -40,8 +41,9 @@ export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
             <Call isActive={activeModal === "call"} disableModal={()=>setactiveModal("")} />
             <Chat isActive={activeModal === "chat"} disableModal={()=>setactiveModal("")} />
             <Menu isActive={activeModal === "menu"} disableModal={()=>setactiveModal("")} />
+            <CalcSlider isActive={activeModal === "calc"} disableModal={()=>setactiveModal("")} />
             
-            <div className="text-white flex flex-col items-center justify-center gap-[6px]">
+            <div className="text-white flex flex-col items-center justify-center gap-[6px]" onClick={() => buttonHandler("calc")}>
                 <Image src='/assets/images/calc.svg' width={20} height={20} alt='Drivovo calc ico' />
                 <span className='text-xs'>Calculate</span>
             </div>

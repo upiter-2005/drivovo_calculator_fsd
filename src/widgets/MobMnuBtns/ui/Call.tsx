@@ -12,8 +12,7 @@ interface ICall {
 }
 
 export const Call:React.FC<ICall> = ({ isActive, disableModal}) => {
-    const [isVisible, setIsVisible] = useState(false)
-    
+    const [isVisible, setIsVisible] = useState(false);
     const ref = useRef(null);
 
     useClickAway(ref, () => {
