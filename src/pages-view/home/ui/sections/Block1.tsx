@@ -13,6 +13,7 @@ export const Block1:React.FC = () => {
 
       useEffect(()=>{
         if(isIntersecting){
+            activeBlockHandler("");
             activeBlockHandler("firstWindow");
         }else{
             activeBlockHandler("");

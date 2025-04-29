@@ -19,7 +19,6 @@ export const Call:React.FC<ICall> = ({ isActive, disableModal}) => {
         console.log("handler child");
         setIsVisible(false)
         disableModal()
-       
     });
 
     useEffect(()=>{

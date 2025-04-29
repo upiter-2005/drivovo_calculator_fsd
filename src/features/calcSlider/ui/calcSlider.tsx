@@ -49,7 +49,27 @@ export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal}) => {
                 createPortal(
                     <div className={ isVisible ? "communicationModal activeModal" : "communicationModal" } ref={ref} >
 
-                        <div className='flex flex-col gap-[7px] mb-3'>
+                        <div className='flex flex-col gap-[7px] mb-3 text-white'>
+                            <div className='flex items-center justify-between w-full pb-3'>
+                                    <span className='linearText font-bold'>12 months</span>
+                                    <span className="text-white">Subscription period</span>
+                            </div>
+                            <div className='flex items-center justify-between w-full'>
+                                <Slider
+                                    defaultValue={[18]}
+                                    max={36}
+                                    step={1}
+                                    className={cn("w-[100%]")}
+                                   
+                                />
+                           </div>
+                           <div className='flex items-center justify-between w-full '>
+                                    <span className='text-xs'>1 month</span>
+                                    <span className='text-xs'>36 months</span>
+                            </div>
+                        </div>
+
+                        <div className='flex flex-col gap-[7px] mb-3 text-white'>
                             <div className='flex items-center justify-between w-full pb-3'>
                                     <span className='linearText font-bold'>12 months</span>
                                     <span>Subscription period</span>
@@ -69,28 +89,8 @@ export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal}) => {
                             </div>
                         </div>
 
-                        <div className='flex flex-col gap-[7px] mb-3'>
-                            <div className='flex items-center justify-between w-full pb-3'>
-                                    <span className='linearText font-bold'>12 months</span>
-                                    <span>Subscription period</span>
-                            </div>
-                            <div className='flex items-center justify-between w-full'>
-                                <Slider
-                                    defaultValue={[18]}
-                                    max={36}
-                                    step={1}
-                                    className={cn("w-[100%]")}
-                                   
-                                />
-                           </div>
-                           <div className='flex items-center justify-between w-full'>
-                                    <span className='text-xs'>1 month</span>
-                                    <span className='text-xs'>36 months</span>
-                            </div>
-                        </div>
 
-
-                        <div className='flex flex-col gap-[7px]'>
+                        <div className='flex flex-col gap-[7px] text-white'>
                             <div className='flex items-center justify-between w-full pb-3'>
                                 <div className='flex items-center justify-between'>
                                     <span>Ransom payment</span>

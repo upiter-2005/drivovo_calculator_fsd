@@ -23,7 +23,6 @@ export const FirstWindow:React.FC = () => {
         console.log(activeBlock);
     }, [activeBlock])
 
-    // if (!isActive) return null
     
     return (
         <div className={ isVisible ? "communicationModal activeModal" : "communicationModal" } ref={ref}>
