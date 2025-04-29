@@ -8,6 +8,7 @@ import { Step1 } from "./step1";
 import { Step2 } from "./step2";
 import { Step3 } from "./step3";
 import { Step4 } from "./step4";
+import { Step5 } from "./step5";
 
 export const QuizForm:React.FC = () => {
 
@@ -48,6 +49,7 @@ export const QuizForm:React.FC = () => {
                     {step === 2 && <Step2 stepChange={stepChange} />}
                     {step === 3 && <Step3 stepChange={stepChange} />}
                     {step === 4 && <Step4 stepChange={stepChange} />}
+                    {step === 5 && <Step5  />}
                   </div>,
                   window.document.body
               )
