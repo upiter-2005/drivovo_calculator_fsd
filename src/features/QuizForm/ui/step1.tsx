@@ -44,7 +44,7 @@ export const Step1:React.FC<IStep1> = ({stepChange}) => {
                 <p className="text-xs font-light">Get 100% discount on the first 2 days of use of the car</p>
 
                 <div className="relative">
-                    <ul className={`absolute bottom-[100%] left-0 z-50 bg-[#3D3D3D] w-full rounded-[10px] overflow-y-scroll p-0 h-0 ${openCars && 'p-2 h-auto h-max-[270px]'}`}>
+                    <ul className={`absolute bottom-[100%] left-0 z-50 bg-[#3D3D3D] w-full rounded-[10px] overflow-y-scroll p-0 h-0 no-scrollbar ${openCars && 'p-2 h-auto h-max-[270px]'}`}>
                         {cars.map(el => <li key={el} onClick={()=> {setSelectedCar(el); setOpenCars(false)}}>{el}</li>)}
                    
                     </ul>
