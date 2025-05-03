@@ -1,3 +1,7 @@
+export interface CarData {
+  acf: CarType
+}
+
 export type CarType = {
     preview_photo: string
     crop_1: string
@@ -27,10 +31,6 @@ export type CarType = {
   
 }
 
-  export interface CarData {
-      acf: CarType
-  }
-  
   export interface CalculatorProps {
     car_price_ex_showroom: string
     armored_film: string

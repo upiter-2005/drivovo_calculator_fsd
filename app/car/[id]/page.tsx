@@ -1,0 +1,1 @@
+export {CarPage as default} from '@/pages-view/car'
