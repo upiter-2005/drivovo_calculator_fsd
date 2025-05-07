@@ -2,24 +2,27 @@
 import { useCalcSlider } from "@/features/calcSlider/hooks/useCalc";
 import { CalculatorProps, CarData } from "@/shared/types/carAcf";
 import { useEffect, useState } from "react";
+import { useCalcStore } from "../actions/calcStore";
 
-
-export interface IcarSingle {
-    car: CarData[] 
-}
 type tarifes = "lizing" | "hiring" | "subscribe"
 
+interface ICalcCar {
+    car: CarData
+}
 
-export const CarPrices:React.FC<IcarSingle> = ({car}) => {
-const {debouncedValue} = useCalcSlider(car[0].acf.calculator_props)
+export const CalcCatalogCar:React.FC<ICalcCar> = ({car}) => {
+    const {moved} = useCalcStore()
+    
+const {debouncedValue} = useCalcSlider(car.acf.calculator_props)
+
+
 
     const [lizing, setLizing] = useState<string>("");
-    const [hiring, setHiring] = useState<string>("");
-    const [subscribe, setSubscribe] = useState<string>("");
+    // const [hiring, setHiring] = useState<string>("");
+    // const [subscribe, setSubscribe] = useState<string>("");
     
     const calculatePerMonth = (carData: CalculatorProps, tarif?: tarifes ) =>{
         const upsale: number = 1.2
-        console.log(carData);
     //     price = C6 + C13
     //     C6 = (C4*I7-C5-C15)/35
     //           C4 = C3*(1-I6)  
@@ -114,22 +117,25 @@ const {debouncedValue} = useCalcSlider(car[0].acf.calculator_props)
     }
 
     useEffect(()=>{
-        setLizing(calculatePerMonth(car[0].acf.calculator_props, "lizing") )
-        setHiring(calculatePerMonth(car[0].acf.calculator_props, "hiring") )
-        setSubscribe(calculatePerMonth(car[0].acf.calculator_props, "subscribe") )
+        setLizing(calculatePerMonth(car.acf.calculator_props, "lizing") )
+        // setHiring(calculatePerMonth(car[0].acf.calculator_props, "hiring") )
+        // setSubscribe(calculatePerMonth(car[0].acf.calculator_props, "subscribe") )
     }, [car])
+
+    useEffect(()=>{
+       
+    }, [debouncedValue])
 
     if(!car) return (<>Error</>)
 
     return (
         <> 
-            <h1>Prices</h1>
-            <div>lizing - {lizing}</div>
-            <div>hiring - {hiring}</div>
-            <div>subscribe - {subscribe}</div>
            
-           <br />
-           price by calc - {debouncedValue}
+            {moved ? debouncedValue : lizing} 
+            {/* <div>hiring - {hiring}</div>
+            <div>subscribe - {subscribe}</div> */}
+           
+         
            
          </>
         

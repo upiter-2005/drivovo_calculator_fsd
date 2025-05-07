@@ -12,7 +12,7 @@ export async function CatalogPage () {
         <>
             <h1 className="text-[32px] mb-6 pl-4">Сar park</h1>
             <Suspense fallback={<p className="text-white">Loading...</p>} >
-            <CarWidget cars={cars.data} />
+                <CarWidget cars={cars.data} />
             </Suspense>
         </> 
        
