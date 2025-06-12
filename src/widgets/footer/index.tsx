@@ -1,0 +1,1 @@
+export {Footer as FooterWidget} from "./ui/Footer"

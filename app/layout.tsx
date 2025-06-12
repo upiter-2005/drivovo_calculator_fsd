@@ -1,19 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/app/theme-provider";
 import { MobMnuBtns } from "@/widgets/MobMnuBtns/ui/MobMnuBtns";
 import { Coockie } from "@/features/coockie";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+
+const Gilroy = localFont({
+  src: [
+    {
+      path: "/fonts/gilroy/Gilroy-Regular.ttf",
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: "/fonts/gilroy/Gilroy-Medium.ttf",
+      weight: '500',
+      style: 'normal'
+    },
+    {
+      path: "/fonts/gilroy/Gilroy-SemiBold.ttf",
+      weight: '600',
+      style: 'normal'
+    },
+  ],
+   display: 'swap'
+})
 
 export const metadata: Metadata = {
   title: "Drivovo",
@@ -27,8 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${Gilroy.className}  antialiased dark:bg-[#030303]`} >
          <ThemeProvider
             attribute="class"
             defaultTheme="system"

@@ -3,6 +3,7 @@ export interface CarData {
 }
 
 export type CarType = {
+    id?: string | number
     preview_photo: string
     crop_1: string
     crop_2: string

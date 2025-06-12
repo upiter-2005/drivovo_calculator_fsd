@@ -17,7 +17,7 @@ export const Coockie:React.FC = () => {
         }
 
         console.log(isVisible);
-    }, [])
+    }, [isVisible])
 
     const setCoockies = () => {
         window.localStorage.setItem("coockie-drivovo", "1");
