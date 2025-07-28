@@ -1,0 +1,1 @@
+export {TypePage as default} from '@/pages-view/type'

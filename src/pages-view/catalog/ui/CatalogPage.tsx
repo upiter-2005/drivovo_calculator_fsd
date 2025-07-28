@@ -14,6 +14,7 @@ export async function CatalogPage () {
             <Suspense fallback={<p className="text-white">Loading...</p>} >
                 <CarWidget cars={cars.data} />
             </Suspense>
+            
         </> 
        
     

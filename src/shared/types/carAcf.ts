@@ -4,6 +4,8 @@ export interface CarData {
 
 export type CarType = {
     id?: string | number
+    hash: string
+    short_descr: string
     preview_photo: string
     crop_1: string
     crop_2: string
@@ -11,6 +13,8 @@ export type CarType = {
     crop_4: string
     calculator_props: CalculatorProps
     video_youtube_id: string
+    is_hit: boolean
+    is_leader: boolean
     title: string
     text: string
     win: string
@@ -29,6 +33,13 @@ export type CarType = {
     sendpulse_form: string
     seo_title: string
     seo_description: string
+    prm_1: string
+    prm_2: string
+    prm_3: string
+    review: string
+    author_review: string
+    author_review_status: string
+    author_review_foto: string
   
 }
 

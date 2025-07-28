@@ -34,14 +34,19 @@ export const Menu:React.FC<ICall> = ({ isActive, disableModal}) => {
             {createPortal(
                 <div className={ isVisible ? "communicationModal activeModal" : "communicationModal" } ref={ref}>
                     <div className='text-white flex flex-col gap-[2px]'>
-                     <MnuButton text="Contacts" redirectTo="/contacts" />
-                     <MnuButton text="Blog" redirectTo="/contacts" />
-                     <MnuButton text="Terms of use" redirectTo="/contacts" />
-                     <MnuButton text="How does it work?" redirectTo="/contacts" />
-                     <MnuButton text="What is it?" redirectTo="/contacts" />
-                     <MnuButton text="Drivovo Pride Club" redirectTo="/contacts" />
-                     <MnuButton text="Appearance" redirectTo="/contacts" />
-                     <MnuButton text="Language" redirectTo="/contacts" />
+                     <MnuButton text="Додому" redirectTo="/" />
+                     <MnuButton text="Автопарк" redirectTo="/" />
+                     <MnuButton text="Про нас" redirectTo="/" />
+                     <MnuButton text="Контакти" redirectTo="/contacts" />
+                     <MnuButton text="У чому переваги?" redirectTo="/#advantages" />
+                     <MnuButton text="Які є автомобілі?" redirectTo="/#cars" />
+                     <MnuButton text="Які є тарифи та умови?" redirectTo="/#tariffs" />
+                     <MnuButton text="Як розрахувати вартість?" redirectTo="/#calculator" />
+                     <MnuButton text="Що входить у вартість підписки?" redirectTo="/#what-is-included" />
+                     <MnuButton text="Як відбувається передача авто?" redirectTo="/#calculator" />
+                     <MnuButton text="Як розрахувати вартість?" redirectTo="/#handover" />
+                     <MnuButton text="Що робити після закінчення терміну?" redirectTo="/#end-of-term" />
+                     <MnuButton text="Які є бонуси та можливості?" redirectTo="/#loyalty-and-investments" />
 
                     </div>
                 </div>,

@@ -11,10 +11,8 @@ import {
     PopoverTrigger,
   } from "@/shared/ui/popover"
   
-  
 import { cn } from '@/utils/cn';
 import { useCalcStore } from "../actions/calcStore";
-
 
 interface IcalcSlider {
     isActive?: boolean,
@@ -23,33 +21,34 @@ interface IcalcSlider {
 export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal}) => {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [showRansom, setShowRansom] = useState<boolean>(false);
-    
-    const ref = useRef(null);
+    const refCalc = useRef(null);
+    const [mounted, setMounted] = useState(false);
+    const {avans, residual, months, setAvans, setMonths, setResidual, isCalcOpen} = useCalcStore();
 
-    const {avans, residual, months, setAvans, setMonths, setResidual} = useCalcStore();
-
-    useClickAway(ref, () => {
+    useClickAway(refCalc, () => {
         console.log("handler child");
         setIsVisible(false);
-        disableModal();
-       
+        disableModal();   
     });
 
+     useEffect(() => {
+        setMounted(true);
+    }, []);
+
     useEffect(()=>{
-        if (isActive) {
+        if (isActive || isCalcOpen) {
             setIsVisible(true);
         }
         console.log(isActive);
-    }, [isActive])
+    }, [isActive, isCalcOpen])
 
-    
-    if (!isActive) return null;
+    if (!mounted) return null;
 
     return (
           <>
             {
                 createPortal(
-                    <div className={ isVisible ? "communicationModal activeModal" : "communicationModal" } ref={ref} >
+                    <div className={ (isVisible) ? "portalCommunicationModal activeModal" : "portalCommunicationModal" } ref={refCalc} >
 
                         <div className='flex flex-col gap-[7px] mb-3 text-white'>
                             <div className='flex items-center justify-between w-full pb-3'>
@@ -83,16 +82,16 @@ export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal}) => {
                             <div className='flex items-center justify-between w-full'>
                                 <Slider
                                     defaultValue={[avans]}
-                                    min={5}
-                                    max={10}
+                                    min={10}
+                                    max={50}
                                     step={1}
                                     className={cn("w-[100%]")}
                                     onValueChange={(val)=>setAvans(val as unknown as number)}
                                 />
                            </div>
                            <div className='flex items-center justify-between w-full'>
-                                    <span className='text-xs'>5%</span>
-                                    <span className='text-xs'>10 %</span>
+                                    <span className='text-xs'>10%</span>
+                                    <span className='text-xs'>50%</span>
                             </div>
                         </div>
 
@@ -119,7 +118,7 @@ export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal}) => {
                                     <Slider
                                         defaultValue={[residual]}
                                         min={10} 
-                                        max={35}
+                                        max={50}
                                         step={1}
                                         className={cn("w-[100%]")}
                                         onValueChange={(val)=>setResidual(val as unknown as number)}
@@ -127,7 +126,7 @@ export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal}) => {
                                     </div>
                                     <div className='flex items-center justify-between w-full'>
                                         <span className='text-xs'>10 %</span>
-                                        <span className='text-xs'>35 %</span>
+                                        <span className='text-xs'>50 %</span>
                                     </div>
                             </>
                             )}

@@ -4,11 +4,17 @@ import "./globals.css";
 import { ThemeProvider } from "@/app/theme-provider";
 import { MobMnuBtns } from "@/widgets/MobMnuBtns/ui/MobMnuBtns";
 import { Coockie } from "@/features/coockie";
+import { FooterWidget } from "@/widgets/footer";
 
 
 
 const Gilroy = localFont({
   src: [
+     {
+      path: "/fonts/gilroy/Gilroy-Light.ttf",
+      weight: '300',
+      style: 'normal'
+    },
     {
       path: "/fonts/gilroy/Gilroy-Regular.ttf",
       weight: '400',
@@ -48,6 +54,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <FooterWidget />
           </ThemeProvider>
           <MobMnuBtns />
           <Coockie />

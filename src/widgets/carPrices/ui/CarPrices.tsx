@@ -1,137 +1,66 @@
 'use client'
 import { useCalcSlider } from "@/features/calcSlider/hooks/useCalc";
-import { CalculatorProps, CarData } from "@/shared/types/carAcf";
-import { useEffect, useState } from "react";
-
+import {  CarData } from "@/shared/types/carAcf";
+import Image from 'next/image';
 
 export interface IcarSingle {
     car: CarData[] 
 }
-type tarifes = "lizing" | "hiring" | "subscribe"
-
 
 export const CarPrices:React.FC<IcarSingle> = ({car}) => {
-const {debouncedValue} = useCalcSlider(car[0].acf.calculator_props)
-
-    const [lizing, setLizing] = useState<string>("");
-    const [hiring, setHiring] = useState<string>("");
-    const [subscribe, setSubscribe] = useState<string>("");
-    
-    const calculatePerMonth = (carData: CalculatorProps, tarif?: tarifes ) =>{
-        const upsale: number = 1.2
-        console.log(carData);
-    //     price = C6 + C13
-    //     C6 = (C4*I7-C5-C15)/35
-    //           C4 = C3*(1-I6)  
-    //                C3 =  Цена авто, брутто 
-    //                I6 = Наша знижка на авто 
-                    const c3 = carData.car_price_ex_showroom as unknown as number 
-
-                    let i6: number = carData.discount_drivovo as unknown as number
-                    if (tarif === "lizing") i6 = carData.discount_lizng as unknown as number
-                    if (tarif === "hiring") i6 = carData.discount_najm as unknown as number
-                    if (tarif === "subscribe") i6 = carData.discount_subscribe as unknown as number
-                    
-                    const c4 = c3*(1 - i6 / 100)
-                    console.log(c4);
-                   
-                    
-    //           I7 = Переплата за весь термін 
-                    let i7: number = carData.overpay as unknown as number
-                    if (tarif === "lizing") i7 = carData.overpay_lizing as unknown as number
-                    if (tarif === "hiring") i7 = carData.overpay_najm as unknown as number
-                    if (tarif === "subscribe") i7 = carData.overpay_subscribe as unknown as number
-    //           I4 = Аванс% 
-                    let i4: number = carData.avans_drivovo as unknown as number
-                    if (tarif === "lizing") i4 = carData.avans_lizing as unknown as number
-                    if (tarif === "hiring") i4 = carData.avans_najm as unknown as number
-                    if (tarif === "subscribe") i4 = carData.avans_subscribe as unknown as number
-                   
-                    const c5 = c4 * (i4 / 100)
-                    console.log(c5);
-                   
-    //           C15 = C4*I5
-    //              I5 = Викуп  
-                    let i5: number = carData.residual_value_drivovo as unknown as number
-                    if (tarif === "lizing") i5 = carData.residual_value_lizing as unknown as number
-                    if (tarif === "hiring") i5 = carData.residual_value_lizing as unknown as number
-                    if (tarif === "subscribe") i5 = carData.residual_value_lizing as unknown as number
-                    const c15 = c4 * (i5 / 100)
-                    console.log(c15);
-
-
-                    const c6 = (c4*i7-c5-c15)/35
-                    console.log(c6);
-
-    //    C13 = (C7 + C12)
-                let i8: number = carData.strakhovka_drivovo as unknown as number
-                if (tarif === "lizing") i8 = carData.strakhovka_lizing as unknown as number
-                if (tarif === "hiring") i8 = carData.strakhovka_najm as unknown as number
-                if (tarif === "subscribe") i8 = carData.strakhovka_subscribe as unknown as number
-                const c7 = c4 * (i8 / 100) / 12
-              
-
-                let i10 = carData.armored_film as unknown as number
-                if (tarif === "lizing" || tarif === "hiring" || tarif === "subscribe") i10 *= upsale
-                const c8 = i10 / 36
-               
-
-                let i11 = carData.tracker as unknown as number
-                if (tarif === "lizing" || tarif === "hiring" || tarif === "subscribe") i11 *= carData.overpay as unknown as number
-                const c9 = i11 / 12
-             
-
-                let i12 = carData.tiers as unknown as number
-                if (tarif === "lizing") i12 *= carData.overpay_lizing as unknown as number
-                if (tarif === "hiring") i12 *= carData.overpay_najm as unknown as number
-                if (tarif === "subscribe") i12 *= carData.overpay_subscribe as unknown as number
-                const c10 = i12 / 36
-
-               
-
-                let i13 = carData.tech_years as unknown as number
-                if (tarif === "lizing") i13 *= carData.overpay_lizing as unknown as number
-                if (tarif === "hiring") i13 *= carData.overpay_najm as unknown as number
-                if (tarif === "subscribe") i13 *= carData.overpay_subscribe as unknown as number
-                const c11 = i13 / 36
-               
-
-                let i14 =  carData.tier_service as unknown as number
-                if (tarif === "lizing") i14 *= carData.overpay_lizing as unknown as number
-                if (tarif === "hiring") i14 *= carData.overpay_najm as unknown as number
-                if (tarif === "subscribe") i14 *= carData.overpay_subscribe as unknown as number
-                const c12 = i14 /12
-                
-                let c13 = c7 + c8 + c9 + c10 + c11 + c12
-                if (tarif === "lizing") c13 = c7 + c8 + c9
-                console.log(c13);
-
-                const result = (c13 + c6).toFixed(2)
-                console.log(result);
-
-                return result
-
-    }
-
-    useEffect(()=>{
-        setLizing(calculatePerMonth(car[0].acf.calculator_props, "lizing") )
-        setHiring(calculatePerMonth(car[0].acf.calculator_props, "hiring") )
-        setSubscribe(calculatePerMonth(car[0].acf.calculator_props, "subscribe") )
-    }, [car])
-
+    const { lizing, hiring, subscribe} = useCalcSlider(car[0].acf.calculator_props)
     if(!car) return (<>Error</>)
-
     return (
-        <> 
-            <h1>Prices</h1>
-            <div>lizing - {lizing}</div>
-            <div>hiring - {hiring}</div>
-            <div>subscribe - {subscribe}</div>
+          <>
            
-           <br />
-           price by calc - {debouncedValue}
-           
-         </>
-        
+            <section id="tarifSell" className="bg-white dark:bg-black dark:text-white px-9  pr-3  max-w-[calc(100%-58px)]">
+                
+                <p className="text-[16px] leading-[22px] font-[500] py-3">Обирай тариф: </p>
+
+                <div className=" dark:text-[#b9b9b9] text-[#494949] border-1 border-[#747474] rounded-[10px] p-[11px] mb-4">
+                    <div className="flex w-full justify-between items-center ">
+                      <div className="text-xl font-medium dark:text-[#fff] text-[#494949]">Лізинг</div>
+                      <div className="text-xl text-right dark:text-[#fff] text-[#494949] leading-6">$ {lizing} <span className="text-[#b9b9b9]">/міс.</span></div>
+                    </div>
+                    <ul className="pt-2 text-[12px] ">
+                      <li className="li-icon pb-2">Фінансування</li> 
+                      <li className="li-icon pb-2">Повне страхування</li>
+                      <li className="li-icon pb-2">Викуп авто</li>
+                    </ul>
+                </div>
+
+                <div className=" dark:text-[#b9b9b9] text-[#494949] border-1 border-[#747474] rounded-[10px] p-[11px] mb-4">
+                    <div className="flex w-full justify-between items-center ">
+                      <div className="text-xl font-medium dark:text-[#fff] text-[#494949]">Підписка</div>
+                      <div className="text-xl text-right dark:text-[#fff] text-[#494949] leading-6">$ {hiring} <span className="text-[#b9b9b9]">/міс.</span></div>
+                    </div>
+                    <ul className="pt-2 text-[12px]">
+                      <li className="li-icon pb-2">Консьєрж-сервіс </li>
+                      <li className="li-icon pb-2">Оплата крипта/кеш</li>
+                      <li className="li-icon pb-2">Право, не обовʼязок викупу</li>
+                    </ul>
+                </div>
+
+                <div className=" dark:text-[#b9b9b9] text-[#494949] border-1 border-[#747474] rounded-[10px] p-[11px] mb-4">
+                    <div className="flex w-full justify-between items-center ">
+                      <div className="text-xl font-medium dark:text-[#fff] text-[#494949]">Оренда від 6 міс.</div>
+                      <div className="text-xl text-right dark:text-[#fff] text-[#494949] leading-6">$ {subscribe} <span className="text-[#b9b9b9]">/міс.</span></div>
+                    </div>
+                    <ul className="pt-2 text-[12px]">
+                      <li className="li-icon pb-2">Консьєрж-сервіс </li>
+                      <li className="li-icon pb-2">Оплата крипта/кеш</li>
+                      <li className="li-icon pb-2">Без викупу авто</li>
+                    </ul>
+                </div>
+                
+            </section>
+              <Image 
+                  src="/assets/images/s1.jpg" 
+                  alt='drivovo' 
+                  width={1440}
+                  height={820}
+                  className="w-full h-auto mt-6 "
+              />
+        </>
     )
 }

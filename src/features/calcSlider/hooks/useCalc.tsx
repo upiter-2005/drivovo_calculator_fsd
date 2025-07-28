@@ -2,6 +2,7 @@ import { CalculatorProps } from "@/shared/types/carAcf"
 import { useEffect, useState } from "react";
 import { useDebounce } from "react-use";
 import { useCalcStore } from "../actions/calcStore";
+import { insertSpace } from "@/utils/insertSpace";
 
 type IUseCalc = CalculatorProps
 
@@ -11,9 +12,12 @@ export const useCalcSlider = (carDataObj: IUseCalc) => {
 
     const [car, setCar] = useState<CalculatorProps>();
     const [sliderMonth, setSliderMonth] = useState<number>(12);
-    const [sliderAvans, setSliderAvans] = useState<number>(5);
-    const [sliderVykup, setSliderVykup] = useState<number>(10);
-    const [debouncedValue, setDebouncedValue] = useState<string>("");
+    const [sliderAvans, setSliderAvans] = useState<number>(10);
+    const [sliderVykup, setSliderVykup] = useState<number>(25);
+    const [lizing, setLizing] = useState<string>("");
+    const [hiring, setHiring] = useState<string>("");
+    const [subscribe, setSubscribe] = useState<string>("");
+    const [debouncedValue, setDebouncedValue] = useState<string>(""); // for Car Card Price 
 
     useEffect(()=> {
         setCar(carDataObj)
@@ -25,8 +29,13 @@ export const useCalcSlider = (carDataObj: IUseCalc) => {
      const [] = useDebounce(
             () => {
                 if(car) {
-                    const countCost = calculatePerMonthWithProps(car, sliderMonth, sliderAvans, sliderVykup, "lizing");
-                    setDebouncedValue(countCost.toFixed(0));
+                    const val1 = calculatePerMonthWithProps(car, sliderMonth, sliderAvans, sliderVykup, "lizing");
+                    const val2 = calculatePerMonthWithProps(car, sliderMonth, sliderAvans, sliderVykup, "hiring");
+                    const val3 = calculatePerMonthWithProps(car, sliderMonth, sliderAvans, sliderVykup, "subscribe");
+                    setLizing(val1); 
+                    setHiring(val2); 
+                    setSubscribe(val3); 
+                    setDebouncedValue(val1);
                     sliderMoved(true)
                 }
             },
@@ -34,85 +43,51 @@ export const useCalcSlider = (carDataObj: IUseCalc) => {
             [sliderMonth, sliderAvans, sliderVykup]
         );
         
-    const calculatePerMonthWithProps = (carData: CalculatorProps, monthes: number, avans: number, vykup: number, tarif: string = "lizing") =>{
-            
-            const range: number = 36 - monthes
-            const upsale: number = 1.2
-            const c3 = carData.car_price_ex_showroom as unknown as number 
-    
-            let i6: number = carData.discount_drivovo as unknown as number
-            if (tarif === "lizing") i6 = carData.discount_lizng as unknown as number
-            if (tarif === "hiring") i6 = carData.discount_najm as unknown as number
-            if (tarif === "subscribe") i6 = carData.discount_subscribe as unknown as number
-            
-            const c4 = c3*(1 - i6 / 100)
-                       
-            let i7: number = carData.overpay as unknown as number
-            if (tarif === "lizing") i7 = carData.overpay_lizing as unknown as number
-            if (tarif === "hiring") i7 = carData.overpay_najm as unknown as number
-            if (tarif === "subscribe") i7 = carData.overpay_subscribe as unknown as number
-    
-            const i4: number = avans
-            const c5 = c4 * (i4 / 100)
-            console.log(c5);
-                       
-            const i5: number = vykup
-            const c15 = c4 * (i5 / 100)
-            const c6 = (c4*i7-c5-c15)/35
-    
-                        
-            let i8: number = carData.strakhovka_drivovo as unknown as number
-            if (tarif === "lizing") i8 = carData.strakhovka_lizing as unknown as number
-            if (tarif === "hiring") i8 = carData.strakhovka_najm as unknown as number
-            if (tarif === "subscribe") i8 = carData.strakhovka_subscribe as unknown as number
-            const c7 = c4 * (i8 / 100) / 12
-            
+    const calculatePerMonthWithProps = (carData: CalculatorProps, monthes: number, avans: number, vykup: number, tarif: string = "lizing") => {
+        const D6 = 0; // скидка авто из формулы
+        const D5 = carData.car_price_ex_showroom as unknown as number // WP var
+        const D9 = 1.5
+        const D8 = (tarif === 'subscribe') ?  10 : avans  // var f
+        const ransom = (tarif === 'subscribe') ?  50 : vykup  //var f
+        const nacenkaE3 = 1.15 
 
-            let i10 = carData.armored_film as unknown as number
-            if (tarif === "lizing" || tarif === "hiring" || tarif === "subscribe") i10 *= upsale
-            const c8 = i10 / 36
-            
+        const D7 = D5*((100-D6) / 100)  
+        const D10 = D7 * (D8 / 100)
+        const D25 = D7 * (ransom / 100)
+        const D11 = (tarif === 'subscribe') ? (D7*D9-D10-D25) / 36 : (D7*D9-D10-D25) / monthes
 
-            let i11 = carData.tracker as unknown as number
-            if (tarif === "lizing" || tarif === "hiring" || tarif === "subscribe") i11 *= carData.overpay as unknown as number
-            const c9 = i11 / 12
-            
+        console.log(D11);
 
-            let i12 = carData.tiers as unknown as number
-            if (tarif === "lizing") i12 *= carData.overpay_lizing as unknown as number
-            if (tarif === "hiring") i12 *= carData.overpay_najm as unknown as number
-            if (tarif === "subscribe") i12 *= carData.overpay_subscribe as unknown as number
-            const c10 = i12 / 36
+        // additionals
+        const D12 = D7 * 0.05 / 12
+        const D13 = (tarif === 'subscribe') ? (D7/6*5*0.05)/36 :  D7/6*5*0.05/monthes
+        const D15 = (tarif === 'subscribe') ? 185/36  : 185/monthes 
 
-            
+        const tracker =  carData.tracker as unknown as number
+        const C16 = tracker * nacenkaE3
+        const C17 = carData.armored_film as unknown as number * nacenkaE3
+        const C18 = carData.carpets as unknown as number * nacenkaE3
+        const C19 = carData.tiers as unknown as number * nacenkaE3
+        const C20 = carData.tech_years as unknown as number * nacenkaE3
+        const C21 = carData.tier_service as unknown as number * nacenkaE3
 
-            let i13 = carData.tech_years as unknown as number
-            if (tarif === "lizing") i13 *= carData.overpay_lizing as unknown as number
-            if (tarif === "hiring") i13 *= carData.overpay_najm as unknown as number
-            if (tarif === "subscribe") i13 *= carData.overpay_subscribe as unknown as number
-            const c11 = i13 / 36
-            
-
-            let i14 =  carData.tier_service as unknown as number
-            if (tarif === "lizing") i14 *= carData.overpay_lizing as unknown as number
-            if (tarif === "hiring") i14 *= carData.overpay_najm as unknown as number
-            if (tarif === "subscribe") i14 *= carData.overpay_subscribe as unknown as number
-            const c12 = i14 /12
-            
-            let c13 = c7 + c8 + c9 + c10 + c11 + c12
-            if (tarif === "lizing") c13 = c7 + c8 + c9
-            console.log(c13);
-
-            const result = (c13 + c6)
-
-            const  userPrice = ( ( range * c6 ) + ( monthes * result ) ) / monthes
-            console.log('userPrice - ' + userPrice);
-            return userPrice
+        let result: number = 0
+        if(tarif === "lizing"){
+            result =( D11 + (D12+ D13 + D15 + C16) ) 
+        }else{
+             result =( D11 + (D12+ D13 + D15 + C16 + C17 + C18 + C19 + C20 + C21) )
+        }
+        
+        console.log(result);
+            return insertSpace(result.toFixed(0))
         }
 
 
     return {
         calculatePerMonthWithProps,
-        debouncedValue
+        debouncedValue,
+        lizing,
+        hiring,
+        subscribe
     }
 }

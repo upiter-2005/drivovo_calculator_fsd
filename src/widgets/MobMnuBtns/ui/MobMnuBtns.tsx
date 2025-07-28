@@ -6,6 +6,8 @@ import { Chat } from './Chat'
 import { useState } from 'react'
 import { Menu } from './Menu'
 import { CalcSlider } from '@/features/calcSlider'
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 interface IMobMnuBtns {
     className?: string
@@ -15,6 +17,8 @@ export type activeModalType = "call" | "chat" | "menu" | "calc" | "";
 
 export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
     const [activeModal, setactiveModal] = useState<activeModalType>('');
+    const pathname = usePathname()
+    console.log(pathname);
 
     const buttonHandler = (val: activeModalType) => {
         setactiveModal("")
@@ -38,14 +42,21 @@ export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
             </button> 
 
             
-            
+            {pathname === '/' ? 
+            <Link href="catalog" className="text-white flex flex-col items-center justify-center gap-[6px]" >
+                <Image src='/assets/images/calc.svg' width={20} height={20} alt='Drivovo calc ico' />
+                <span className='text-xs'>Calculate</span>
+            </Link>
+            : 
             <button className="text-white flex flex-col items-center justify-center gap-[6px]" onClick={() => buttonHandler("calc")}>
                 <Image src='/assets/images/calc.svg' width={20} height={20} alt='Drivovo calc ico' />
                 <span className='text-xs'>Calculate</span>
             </button>
+            }
+            
             <button className="text-white flex flex-col items-center justify-center gap-[6px]">
-                <Image src='/assets/images/price.svg' width={20} height={20} alt='Drivovo price ico' />
-                <span className='text-xs'>Price</span>
+                <Image src='/assets/images/location.svg' width={20} height={20} alt='Drivovo price ico' />
+                <span className='text-xs'>Location</span>
             </button>
             <button className="text-white flex flex-col items-center justify-center gap-[6px]" onClick={() => buttonHandler("menu")}>
                 <Image src='/assets/images/menu.svg' width={20} height={20} alt='Drivovo price ico' />

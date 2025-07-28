@@ -1,52 +1,67 @@
-// import { IProduct } from '@/entities/product/model/types'
-
 import { fetchData } from '@/shared/api/helpers/fetchData'
 import { CarData } from '@/shared/types/carAcf'
 import { CarPrices } from '@/widgets/carPrices/ui/CarPrices'
 import { notFound } from 'next/navigation'
-// import { SingleProduct } from '@/widgets/singleProduct'
-//import type { Metadata, ResolvingMetadata } from 'next'
+//import { Block2 } from './Block2'
+import { CompareTable } from './CompareTable'
+import { SwapCars } from '@/widgets/swapCars'
+import { LeaderCars } from '@/widgets/leaderCars'
+import { BrandsCars } from '@/widgets/brandsCars'
+import { SuvCars } from '@/widgets/suvCars'
+import { PhotoSlider } from './PhotoSlider'
+import { Faq } from './Faq'
+import { CarReview } from './CarReview'
+import { SecondCar } from '@/widgets/SecondCar'
 
-// export const dynamic = 'force-static'
-export const dynamic = 'force-dynamic'
+//import type { Metadata } from 'next'
+
+
+//export const dynamic = 'force-dynamic'
 // type Props = {
-//   params: { id: string }
+//   params: paramsType
+//   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 // }
-type PageProps = {
-  params: {
-    id: string;
-  };
-};
-// export async function generateMetadata(
-//   { params }: Props,
-//   parent: ResolvingMetadata
-// ): Promise<Metadata> {
-//   return {
-//     title: `Product title seo - ${params.id}`,
-//   }
-// }
-// export async function generateStaticParams() {
-//  const cars = await fetchData<CarData[]>(`https://drivovo.com/wp-json/wp/v2/nextcar?_fields=acf&acf_format=standard&per_page=50&order=asc`) // список всех товаров
-//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//   return cars.data?.map((product: any) => ({
-//     id: product.id.toString(),
-//   }));
-// }
+type paramsType = Promise<{ id: string }>
 
-export async function CarPage ({params}:PageProps ) {
-  const { id } =  params
+
+
+
+
+export async function CarPage ({
+    params,
+}: {
+    params: paramsType;
+}) {
+  const { id } =  await params
+  const cars = await fetchData<CarData[]>(`${process.env.NEXT_PUBLIC_API_URL}/nextcar?_fields=acf&acf_format=standard&per_page=70&order=asc`)
+
+    if (cars.error) return (<p>Error 1</p>)
     // const response: unknown =  await fetch(``, 
     //     { next: { revalidate: 60 } }
     //   ).then(res => res.json())
 
-     const car = await fetchData<CarData[]>(`${process.env.NEXT_PUBLIC_API_URL}/nextcar?slug=${id}&_fields=acf&acf_format=standard`)
+     const car = await fetchData<CarData[]>(`${process.env.NEXT_PUBLIC_API_URL}/nextcar?slug=${id}&_fields=acf&acf_format=standard`, 
+       //{ next: { revalidate: 60 } }
+      )
    
-     if (car.error || !car.data?.length) return notFound()
+     if (car.error || !car.data) return notFound()
+
       return (
         <>
-          <div> {id}</div>
-          <br />
-          <CarPrices car={car.data} />
+          <PhotoSlider data={car.data[0].acf} />
+          <section className='bg-white dark:bg-black relative  z-11'>
+            <CarPrices car={car.data} />
+               
+            <CompareTable car={car.data} />
+            <Faq />
+            <CarReview text={car.data[0].acf.review} data={car.data[0].acf}/>
+            <SwapCars cars={cars.data} />
+            <BrandsCars />
+            <LeaderCars cars={cars.data} />
+            <SuvCars />
+            <SecondCar cars={cars.data} />
+          </section>
+          
         </>
       
     )
