@@ -12,39 +12,25 @@ interface ICar  {
 export const Card:React.FC<ICar> = ({car, sliderSlot, secondThumb = false}) => {
      console.log(car);
     return (
-        <div className='min-w-[120px] w-[120px] overflow-hidden'>
-            <Link href={`/car/${car.url}`} className='relative w-full h-[160px] block'>
-            {secondThumb ? 
+        <div className='min-w-[120px] w-[43%] overflow-hidden'>
+            <Link href={`/car/${car.url}`} className='block w-full relative aspect-[5/7] '>
             <Image 
-                src={car?.crop_1} 
+                src={secondThumb ? car?.crop_1 : car?.preview_photo} 
                 alt="drivovo"
-                sizes="160px"
+                //sizes="160px"
                 fill
                 style={{
                     objectFit: 'cover',
                     borderRadius: '8px'
                 }}
             />
-        :
-        <Image 
-                src={car?.preview_photo} 
-                alt="drivovo"
-                sizes="160px"
-                fill
-                style={{
-                    objectFit: 'cover',
-                    borderRadius: '8px'
-                }}
-            />
-        }
-            
                 
             </Link>
-            <div className='text-white text-xs mt-3'> 
-                ${sliderSlot}<span className='text-[#636161]'>/month</span> 
+            <div className='dark:text-white text-xs mt-3'> 
+                {sliderSlot}<span className='dark:text-[#636161] text-[#8e8e8etext-[#b9b9b9] text-[16px] leading-5]'>/month</span> 
             </div>
-            <Link href={`/car/${car.url}`} className='text-sm my-[6px] '>{car.car_name}</Link>
-            <div className=' text-xs text-[#b3b3b3]'>found near pro sports arenas and tony golf courses</div>
+            <Link href={`/car/${car.url}`} className='text-sm my-[6px] leading-[17px] block'>{car.car_name}</Link>
+            <div className=' text-xs text-[#b3b3b3]'>{car.short_descr.slice(0, 50) + '…'}</div>
         </div>
     )
 }

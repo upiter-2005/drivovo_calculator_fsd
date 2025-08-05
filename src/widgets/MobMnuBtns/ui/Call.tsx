@@ -4,7 +4,7 @@ import { CallbackForm } from '@/features/callbackForm'
 import { createPortal } from 'react-dom'
 import { useEffect, useRef, useState } from 'react'
 import {useClickAway} from 'react-use';
-
+import { CloseIcon } from '@/shared/ui/closeIcon';
   
 interface ICall {
     isActive?: boolean,
@@ -14,6 +14,7 @@ interface ICall {
 export const Call:React.FC<ICall> = ({ isActive, disableModal}) => {
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef(null);
+    const [mounted, setMounted] = useState(false);
 
     useClickAway(ref, () => {
         console.log("handler child");
@@ -28,18 +29,23 @@ export const Call:React.FC<ICall> = ({ isActive, disableModal}) => {
         console.log(isActive);
     }, [isActive])
 
-    if (!isActive) return null
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
 
     return (
         <>
             {
                 createPortal(
-                    <div className={ isVisible ? "communicationModal activeModal" : "communicationModal" } ref={ref} >
+                    <div className={ isVisible ? "portalCommunicationModal activeModal" : "portalCommunicationModal" } ref={ref} >
+                        <CloseIcon closeHandler={() => {setIsVisible(false); disableModal(); } } />
                         <div className='flex flex-col gap-[6px]'>
-                            <p className={`pt-3 text-white`}>Call now</p>
-                                <RedButton text='+38 063 412 8844' phoneLink="+380634128844" />
-                                <RedButton text='+38 063 412 8844'  />
-                            <p className='pt-3 text-white'>Request a call back</p>
+                            <p className={`pt-3 dark:text-white`}>Подзвонити</p>
+                                <RedButton text='+38 073 100 7395' phoneLink="+380731007395" />
+                                <RedButton text='+48 228 738 895' phoneLink="+48228738895" />
+                            <p className='pt-3 dark:text-white'>Передзвоніть мені</p>
                             <CallbackForm />
                         </div>
                     </div>,

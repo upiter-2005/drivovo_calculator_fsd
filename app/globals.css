@@ -128,7 +128,7 @@
   background: linear-gradient(90deg, rgba(255,66,3,1) 0%, rgba(254,49,161,1) 100%);
 }
 .instaGradient{
-  background: linear-gradient(90deg, rgba(225,186,5,1) 0%, rgba(255,66,3,1) 25%, rgba(254,49,161,1) 50%, rgba(179,5,238,1) 75%, rgba(123,49,248,1) 100%);
+  background: linear-gradient(90deg, rgba(225,186,5,1) 0%, #ff4203 25%, rgba(254,49,161,1) 50%, rgba(179,5,238,1) 75%, rgba(123,49,248,1) 100%);
 }
 .firstBaner{
   background-position: center;
@@ -146,11 +146,10 @@
 }
 /* styles.css */
 .light .communicationModal{
-  background-color: #fff;
+  background-color: #f0efef;
 }
 .portalCommunicationModal {
-  width: calc(100% - 74px);
-  background-color: #292929;
+  width: calc(100% - 81px);
   margin-left: 16px;
   padding: 12px;
   
@@ -161,9 +160,16 @@
   bottom: 16px;
   left: 0;
   transform: translateY(200%);
+  z-index: 9999!important;
+}
+.dark .portalCommunicationModal{
+  background-color: #292929;
+}
+.portalCommunicationModal{
+  background-color: #f4f4f5;
 }
 .communicationModal {
-  width: calc(100% - 74px);
+  width: calc(100% - 81px);
   background-color: #292929;
   margin-left: 16px;
   padding: 12px;
@@ -253,4 +259,169 @@ td:first-child{
 .reviewBlock img{
   display: inline;
   margin-left: 4px;
+}
+.swiper-pagination-bullet {
+  background: transparent!important;
+  border: 1px solid  #fff!important; /* цвет неактивной точки */
+  opacity: 1!important; /* по умолчанию 0.2 */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #fff!important; /* активная точка (например, красная) */
+}
+
+/* GlowingText.css */
+.glow-once {
+  animation: glow 2s ease-in-out 1;
+  color: white;
+}
+
+@keyframes glow {
+ 0% {
+    color: #ff0000; /* вспышка начинается с красного */
+    text-shadow:
+      0 0 5px #ffffff,
+      0 0 10px #ff4203,
+      0 0 20px #ff4203,
+      0 0 30px #ff4203;
+  }
+  100% {
+    color: #ffffff;
+    text-shadow:
+      0 0 10px #ffffff,
+      0 0 20px #ffffff,
+      0 0 40px #ffffff,
+      0 0 60px #ffffff,
+      0 0 80px #ffffff,
+      0 0 100px #ffffff;
+  }
+}
+
+
+
+
+
+.pricing-grid_title_wrrapper{
+	max-width: 900px!important;
+	width: 100%!important;
+	margin: 0 auto!important;
+}
+.pricing-grid{
+	max-width: 900px!important;
+	width: 100%!important;
+	margin: 0 auto!important;
+	display: flex!important;
+	justify-content: space-between!important;
+	flex-wrap: wrap!important;
+}
+.pricing-grid-box{
+	display: flex;
+	flex: 1;
+	justify-content: space-between!important;
+	border-top-right-radius: 12px;
+	overflow: hidden;
+}
+.pricing-grid-item{
+	flex: 1;
+	transition: all .3s ease;
+}
+.pricing-grid-item:hover{
+/* 	background: #ff5d046b; */
+	cursor:pointer;
+}
+
+.pricing-grid-item-title{
+	height: 80px;
+	font-weight: 900;
+	font-size: 12px;
+	line-height: 26px;
+	background-color: #191919;
+	color: #fff;
+	margin-bottom: 20px;
+}
+.pricing-grid-left{
+	font-size: 12px;
+	width: 219px;
+}
+.dark .pricing-grid-item div, .dark .pricing-grid-left div{
+	height: 34px;
+	border-bottom: 1px solid #292929;
+	font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content:  flex-start;
+  padding-left: 8px;
+  color: #d7d7d7;
+}
+.pricing-grid-item div, .pricing-grid-left div{
+	height: 34px;
+	border-bottom: 1px solid #292929;
+	font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content:  flex-start;
+  padding-left: 8px;
+  color: #000;
+}
+.pricing-grid-item div:first-child, .pricing-grid-left div:first-child{
+	height: 32px;
+	background-color: #bdbdbd;
+  font-weight: 600;
+  font-size: 14px;
+}
+.dark .pricing-grid-item div:first-child, .dark .pricing-grid-left div:first-child{
+  background-color: #191919;
+}
+.pricing-grid-item-swap div{
+  width: 79px;
+  border-bottom: 1px solid #292929;
+}
+.dark .pricing-grid-item div{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+  color: #fff;
+}
+.pricing-grid-item div{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+  color: #333;
+}
+.dark .pricing-grid-item div{
+   color: #9b9b9b;
+}
+@media(max-width: 992px){
+	
+	
+	.pricing-grid-item{
+		margin-right: .5px;
+	}
+	.pricing-grid-box{
+		overflow-x: auto;
+		flex: auto;
+		width: 35%;
+	  border-top-right-radius: 0;
+	}
+	.pricing-grid-box::-webkit-scrollbar {
+	  display: none;
+	}
+	.pricing-grid-left{
+		width: 219px;
+	}
+	.pricing-grid-item-title{
+		font-size: 14px;
+		margin-bottom: 0;
+	}
+	.pricing-grid-item div, .pricing-grid-left div{
+		
+		line-height: 12px;
+		height: 36px;
+	}
+	.pricing-grid-left div{
+		border-right: 1px solid #292929;
+	}
+	
 }

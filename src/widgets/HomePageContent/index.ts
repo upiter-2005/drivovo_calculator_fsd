@@ -1,0 +1,1 @@
+export {HomePageContent as HomePageContentWidget} from './ui/HomePageContent'

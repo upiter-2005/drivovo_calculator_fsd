@@ -9,9 +9,7 @@ import { useEffect, useRef, useState } from "react";
 export const Section1:React.FC = () => {
 
   const section1Ref = useRef<HTMLDivElement>(null);
-
   const autoVisible1 = useIsVisible(section1Ref, .5);
-
   const [visible1, setVisible1] = useState(false);
 
    useEffect(() => {
@@ -20,7 +18,7 @@ export const Section1:React.FC = () => {
 
     return (
         <div ref={section1Ref}>
-            <div   className="bg-white dark:bg-black dark:text-white px-9 py-14 pr-3  max-w-[calc(100%-58px)]">
+            <div className="bg-white dark:bg-black dark:text-white px-9 py-14 pr-3  max-w-[calc(100%-58px)]">
                 <h2 className="text-[30px] leading-[30px] font-[600] mb-12">Чому підписка Drivovo – це не просто оренда чи лізинг</h2>
                 <div className="text-[15px] dark:text-[#c2c2c2] text-[#494949] leading-[18px] flex flex-col gap-4 ">
                     <p>Drivovo бере на себе все, що зазвичай доводиться вирішувати окремо:</p>

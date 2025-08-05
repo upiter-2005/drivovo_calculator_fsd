@@ -5,7 +5,7 @@ import { notFound } from "next/navigation"
 import { Suspense } from "react"
 
 async function getCarsByBrand(brand: string) {
-  const res = await fetchData<CarData[]>(`https://drivovo.com/wp-json/custom/v1/nextcar?car_brand=${brand}`, {
+  const res = await fetchData<CarData[]>(`https://drivovo.ua/wp-json/custom/v1/nextcar?car_brand=${brand}`, {
     cache: "no-store", // отключаем кеш, если надо получать всегда актуальные данные
   })
   if (!res.data) {

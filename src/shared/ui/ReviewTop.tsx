@@ -13,13 +13,13 @@ export const ReviewTop:React.FC<IReviewTop> = ({data}) => {
               alt='drivovo' 
               width={32}
               height={32}
-              className=""
-          />  : <div className="w-8 h-8 bg-gray-400 rounded-full"></div>}
+              className="rounded-[50%]"
+          />  : <div className="w-8 h-8 bg-gray-400 rounded-[50%]"></div>}
         </div>
 
         <div>
           <p className="text-xs">{data.author_review ? data.author_review : "Artem Shevchenko"}</p>
-          <span className="text-xs text-[#646464]">{data.author_review_status ? data.author_review_status : 'CEO of market at Monobank'}</span>
+          <span className="text-xs text-[#646464] block leading-4">{data.author_review_status ? data.author_review_status : 'CEO of market at Monobank'}</span>
         </div>
         
         <div className="absolute right-0 top-0">
@@ -28,7 +28,7 @@ export const ReviewTop:React.FC<IReviewTop> = ({data}) => {
             alt='drivovo' 
             width={72}
             height={14}
-            className=""
+            className="rounded-[50%]"
           />
         </div>
       </div>

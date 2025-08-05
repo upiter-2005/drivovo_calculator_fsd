@@ -7,5 +7,6 @@ export interface IReviewTop {
 
 export interface IReview {
   data : CarType,
-  text: string
+  text: string,
+  photo: string
 }

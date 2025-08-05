@@ -3,17 +3,19 @@ import Image from 'next/image'
 import { cn } from "@/utils/cn"
 import { Call } from './Call'
 import { Chat } from './Chat'
+import { Location } from './Location'
 import { useState } from 'react'
 import { Menu } from './Menu'
 import { CalcSlider } from '@/features/calcSlider'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+// import { PortalComponent } from '@/shared/ui/PortalComponent'
 
 interface IMobMnuBtns {
     className?: string
 }
 
-export type activeModalType = "call" | "chat" | "menu" | "calc" | "";
+export type activeModalType = "call" | "chat" | "menu" | "calc" | "location" | "";
 
 export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
     const [activeModal, setactiveModal] = useState<activeModalType>('');
@@ -24,6 +26,11 @@ export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
         setactiveModal("")
         setactiveModal(val)
         console.log("handler parent");
+         if (navigator.vibrate) {
+      navigator.vibrate(200); // вибрация на 200 миллисекунд
+        } else {
+        console.log("Вибрация не поддерживается этим устройством/браузером.");
+        }
     }
 
     console.log(activeModal);
@@ -33,39 +40,54 @@ export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
          
               
             <button className={cn("text-white flex flex-col items-center justify-center gap-[6px]")} onClick={() => buttonHandler("call")}>
-                <Image src='/assets/images/tel.svg' width={20} height={20} alt='Drivovo phone ico' />
+                {activeModal === 'call' ? <Image src='/assets/images/tel-red.svg' width={20} height={20} alt='Drivovo chat ico' /> :
+                <Image src='/assets/images/tel.svg' width={20} height={20} alt='Drivovo chat ico' />
+                }
                 <span className='text-xs'>Call</span>
             </button>   
+
+
             <button className={cn("text-white flex flex-col items-center justify-center gap-[6px]")} onClick={() => buttonHandler("chat")}>
+                 {activeModal === 'chat' ? <Image src='/assets/images/chat-red.svg' width={20} height={20} alt='Drivovo chat ico' /> :
                 <Image src='/assets/images/chat.svg' width={20} height={20} alt='Drivovo chat ico' />
+                }
                 <span className='text-xs'>Chat</span>
             </button> 
 
             
             {pathname === '/' ? 
-            <Link href="catalog" className="text-white flex flex-col items-center justify-center gap-[6px]" >
+            <Link href="/catalog" className="text-white flex flex-col items-center justify-center gap-[6px]" >
                 <Image src='/assets/images/calc.svg' width={20} height={20} alt='Drivovo calc ico' />
                 <span className='text-xs'>Calculate</span>
             </Link>
             : 
             <button className="text-white flex flex-col items-center justify-center gap-[6px]" onClick={() => buttonHandler("calc")}>
-                <Image src='/assets/images/calc.svg' width={20} height={20} alt='Drivovo calc ico' />
+                 {activeModal === 'calc' ? <Image src='/assets/images/calc-red.svg' width={20} height={20} alt='Drivovo chat ico' /> :
+                <Image src='/assets/images/calc.svg' width={20} height={20} alt='Drivovo chat ico' />
+                }
+                
                 <span className='text-xs'>Calculate</span>
             </button>
             }
             
-            <button className="text-white flex flex-col items-center justify-center gap-[6px]">
-                <Image src='/assets/images/location.svg' width={20} height={20} alt='Drivovo price ico' />
+            <button className="text-white flex flex-col items-center justify-center gap-[6px]" onClick={() => buttonHandler("location")}>
+                <Image src='/assets/images/location.svg' width={20} height={20} alt='Drivovo location ico' />
                 <span className='text-xs'>Location</span>
             </button>
             <button className="text-white flex flex-col items-center justify-center gap-[6px]" onClick={() => buttonHandler("menu")}>
-                <Image src='/assets/images/menu.svg' width={20} height={20} alt='Drivovo price ico' />
+                {activeModal === 'menu' ? <Image src='/assets/images/menu-red.svg' width={20} height={20} alt='Drivovo chat ico' /> :
+                <Image src='/assets/images/menu.svg' width={20} height={20} alt='Drivovo chat ico' />
+                }
+                
                 <span className='text-xs'>Menu</span>
             </button>
 
             <Call isActive={activeModal === "call"} disableModal={()=>setactiveModal("")} />
             <Chat isActive={activeModal === "chat"} disableModal={()=>setactiveModal("")} />
             <Menu isActive={activeModal === "menu"} disableModal={()=>setactiveModal("")} />
+            <Location isActive={activeModal === "location"} disableModal={()=>setactiveModal("")} />
+              
+            
             <CalcSlider isActive={activeModal === "calc"} disableModal={()=>setactiveModal("")} />
 
         </div>

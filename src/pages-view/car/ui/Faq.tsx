@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/shared/ui/accordion"
-import Image from "next/image";
+
 
 export const Faq:React.FC = () => {
     return (
@@ -12,7 +12,7 @@ export const Faq:React.FC = () => {
         <h2 className=" mt-6 bg-white dark:bg-black dark:text-[#fff]  m-auto max-w-[calc(100%-68px)] text-[24px]">Що далі:</h2>
           <Accordion type="single" collapsible className="  border-[#5C5C5C] mt-1 bg-white dark:bg-black dark:text-white px-9  pr-3  max-w-[calc(100%-68px)] ">
                 <AccordionItem value="item-11" className="border-b-[#5C5C5C]">
-                    <AccordionTrigger className="text-[#c2c2c2] text-[15px]">Ціноутворення та платежі </AccordionTrigger>
+                    <AccordionTrigger className="dark:text-[#c2c2c2] text-[15px]">Ціноутворення та платежі </AccordionTrigger>
                     <AccordionContent className="text-[12px] dark:text-[#c2c2c2] faq-content">
                     <p>Наша система ціноутворення побудована на принципах прозорості та передбачуваності. Основою є фіксований щомісячний платіж, який покриває всі основні витрати, пов&apos;язані з автомобілем, окрім пального. За нашими розрахунками, сукупна вартість користування авто за підпискою за 3 роки лише на 12-14% вища, ніж при прямій купівлі, і ця різниця є вашою платою за повний сервіс та делегування всіх турбот</p>
                     <h3 className="mb-1 text-base font-bold dark:text-white">Що входить у щомісячний платіж:</h3>
@@ -35,7 +35,7 @@ export const Faq:React.FC = () => {
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-12" className="border-b-[#5C5C5C]">
-                    <AccordionTrigger className="text-[#c2c2c2] text-[15px]">Оформлення, видача авто </AccordionTrigger>
+                    <AccordionTrigger className="dark:text-[#c2c2c2] text-[15px]">Оформлення, видача авто </AccordionTrigger>
                     <AccordionContent className="text-[12px] dark:text-[#c2c2c2] faq-content">
                      <p>Ми повністю переосмислили процес отримання автомобіля, звівши його до кількох простих та швидких кроків, що в середньому займають</p>
                      <p><span>29 хвилин</span> від фінального підтвердження.</p>
@@ -49,7 +49,7 @@ export const Faq:React.FC = () => {
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-13" className="border-b-[#5C5C5C]">
-                    <AccordionTrigger className="text-[#c2c2c2] text-[15px]">Страхування, захист авто </AccordionTrigger>
+                    <AccordionTrigger className="dark:text-[#c2c2c2] text-[15px]">Страхування, захист авто </AccordionTrigger>
                     <AccordionContent className="text-[12px] dark:text-[#c2c2c2] faq-content">
                      <p>Ваш спокій та безпека є нашим пріоритетом. Тому кожен автомобіль Drivovo має максимальний рівень страхового захисту, вартість якого вже включена у ваш щомісячний платіж.</p>
                     <h3 className="mb-1 text-base font-bold dark:text-white">Що входить у пакет страхування:</h3>
@@ -63,7 +63,7 @@ export const Faq:React.FC = () => {
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-15" className="border-b-[#5C5C5C]">
-                    <AccordionTrigger className="text-[#c2c2c2] text-[15px]">ТО, ДТП, підмінне авто </AccordionTrigger>
+                    <AccordionTrigger className="dark:text-[#c2c2c2] text-[15px]">ТО, ДТП, підмінне авто </AccordionTrigger>
                     <AccordionContent className="text-[12px] dark:text-[#c2c2c2] faq-content">
                      <p>Ми розглядаємо автомобіль як систему, яка має працювати бездоганно та не створювати вам турбот. Тому ми повністю забираємо на себе управління всіма сервісними та кризовими ситуаціями.</p>
                     <h3 className="mb-1 text-base font-bold dark:text-white">Технічне обслуговування (ТО):</h3>
@@ -81,7 +81,7 @@ export const Faq:React.FC = () => {
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-35" className="border-b-[#5C5C5C]">
-                    <AccordionTrigger className="text-[#c2c2c2] text-[15px]">Викуп авто, переоформлення </AccordionTrigger>
+                    <AccordionTrigger className="dark:text-[#c2c2c2] text-[15px]">Викуп авто, переоформлення </AccordionTrigger>
                     <AccordionContent className="text-[12px] dark:text-[#c2c2c2] faq-content">
                      <p>Ми розробили нашу систему так, щоб на кожному етапі ви мали максимальну свободу вибору. Можливість викупу автомобіля — це логічне завершення цього принципу. Якщо за час підписки автомобіль став для вас по-справжньому своїм, ви можете легко перевести його у свою власність. Це ваше право, а не зобов&apos;язання.</p>
                      <h3 className="mb-1 text-base font-bold dark:text-white">Умови викупу:</h3>
@@ -103,13 +103,7 @@ export const Faq:React.FC = () => {
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
-               <Image 
-                              src="/assets/images/img_287.jpg" 
-                              alt='drivovo' 
-                              width={1440}
-                              height={820}
-                              className="w-full h-auto mt-6 "
-                          />
+               
         </>
     )
 

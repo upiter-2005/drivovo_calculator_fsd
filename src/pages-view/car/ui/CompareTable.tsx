@@ -13,134 +13,115 @@ export const CompareTable:React.FC<IcarSingle> = ({car}) => {
   const { lizing, hiring, subscribe} = useCalcSlider(car[0].acf.calculator_props)
     return (
         <>
-            <section className="bg-white dark:bg-black dark:text-white px-9 pr-0 pt-10 text-[#b9b9b9]">
+            <section className="bg-white dark:bg-black dark:text-white px-4 pr-0 pt-10 text-[#b9b9b9]">
               
-              <div className="max-h-[500px] max-w-[430px] overflow-y-auto rounded-lg border border-[#5c5c5c] ">
-                <table className="min-w-full table-fixed text-left text-white bg-black text-[12px]">
-                  <thead className="sticky top-0 z-10 bg-[#191919] shadow-[inset_0px_2px_0px_rgba(255,255,255,0.5)]">
-                    <tr>
-                      <th className="w-3/5 p-4  whitespace-nowrap ">Що входить в тарифи</th>
-                      <th className="w-1/6 p-4 ">Лізинг</th>
-                      <th className="w-1/6 p-4 ">Підписка</th>
-                      <th className="w-1/6 p-4 ">Оренда</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-xs  ">
-                    <tr>
-                      <td className="p-4 py-2">Фінансування</td>
-                      <td className="p-4 py-2 text-center"><CheckImage /></td>
-                      <td className="p-4 py-2 text-center"><CheckImage /></td>
-                      <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Страхування (КАСКО + ОСАЦВ)</td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Трекер</td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Пробіг 15 тис. км</td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Пробіг 20 тис. км</td>
-                      <td className="p-4 py-2 text-center"><DisableIco /></td>
-                      <td className="p-4 py-2 text-center"><CheckImage /></td>
-                      <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Понад ліміт</td>
-                      <td className="p-4 py-2 text-center">zł0,5/км</td>
-                      <td className="p-4 py-2 text-center">zł0,5/км</td>
-                      <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">ТО (технічне обслуговування)</td>
-                      <td className="p-4 py-2 text-center"><DisableIco /></td>
-                      <td className="p-4 py-2 text-center"><DisableIco /></td>
-                      <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Шини + шинний сервіс</td>
-                      <td className="p-4 py-2 text-center"><DisableIco /></td>
-                      <td className="p-4 py-2 text-center"><DisableIco /></td>
-                      <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Допомога при ДТП</td>
-                       <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Підмінне авто (ремонт тощо)</td>
-                       <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Захист кредитної історії</td>
-                       <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Можливість апгрейду/даунгрейду</td>
-                       <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Дострокове розірвання контракту</td>
-                        <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Оплата криптовалютою</td>
-                       <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Drivovo Pride</td>
-                       <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Викуп авто</td>
-                       <td className="p-4 py-2 text-center"><CheckImage /></td>
-                        <td className="p-4 py-2 text-center"><DisableIco /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td> 
-                    </tr>
-                    <tr>
-                      <td className="p-4 py-2">Без бюрократії (апрув за 30 хв.)</td>
-                      <td className="p-4 py-2 text-center">✔</td>
-                       <td className="p-4 py-2 text-center"><CheckImage /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                        <td className="p-4 py-2 text-center"><CheckImage /></td>
-                    </tr>
-                    <tr className=" text-white border-t border-[#5c5c5c] ">
-                      <td className="p-4 !text-white font-semibold text-sm">Щомісячна ціна, zł</td>
-                      <td className="p-4 text-center !text-white font-semibold text-sm">${lizing}</td>
-                      <td className="p-4 text-center !text-white font-semibold text-sm">${subscribe}</td>
-                      <td className="p-4 text-center !text-white font-semibold text-sm">${hiring}</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className=" overflow-y-auto rounded-lg border border-[#292929] ">
+                
+
+               <div className="pricing-grid">
+ 	
+		
+            <div className="pricing-grid-left">
+              <div className="  ">Що входить в тарифи</div>
+              <div>Фінансування</div>
+              <div>Страхування (КАСКО + ОСАЦВ)</div>
+              <div>Трекер</div>
+              <div>Пробіг 15 тис. км</div>
+              <div>Пробіг 20 тис. км</div>
+              <div>Понад ліміт</div>
+              <div>ТО (технічне обслуговування) </div>
+              <div>Шини + шинний сервіс</div>
+              <div>Допомога при ДТП</div>
+              <div>Підмінне авто (ремонт тощо) </div>
+              <div>Захист кредитної історії</div>
+              <div>Можливість апгрейду/даунгрейду</div>
+              <div>Дострокове розірвання контракту</div>
+              <div>Оплата криптовалютою</div>
+              <div>Drivovo Pride</div>
+              <div>Викуп</div>
+              <div>Без бюрократії (апрув за 30 хв.) </div>
+              <div className="text-white text-sm font-semibold">Щомісячна ціна, $ </div>
+              
+            </div>
+          
+          
+            <div className="pricing-grid-box">
+              
+            <div className="pricing-grid-item pricing-grid-item-swap">
+              <div className="">Лізинг</div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><DisableIco /></div>
+              <div>0,5 zł за км</div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div className="text-white text-sm font-semibold">$ {lizing.toFixed(0)} </div>
+            </div>
+            
+            
+            <div className="pricing-grid-item pricing-grid-item-swap">
+              <div className="pricing-grid-item-title">Оренда</div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div>0,5 zł за км</div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><DisableIco /></div>
+              <div><CheckImage /></div>
+              <div className="text-white text-sm font-semibold">$ {subscribe.toFixed(0)} </div>
+            </div>
+          
+            
+            <div className="pricing-grid-item pricing-grid-item-swap">
+              <div className="pricing-grid-item-title">Підписка</div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div><CheckImage /></div>
+              <div className="text-white text-sm font-semibold">$ {hiring.toFixed(0)} </div>
+            </div>
+            
+            
+          </div>
+        </div>  
               </div>
             </section>
               <Image 
-                  src="/assets/images/s2.jpg" 
+                  src={car[0].acf.adphoto_2}  
                   alt='drivovo' 
                   width={1440}
                   height={820}

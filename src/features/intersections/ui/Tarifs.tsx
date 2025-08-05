@@ -36,8 +36,8 @@ const features = {
 
 export const Tarifs = () => {
   return (
-    <Tabs defaultValue="leasing" className="w-full  bg-[#292929] rounded-xl pt-0  pb-3 text-white">
-      <TabsList className="flex justify-between bg-[#3d3d3d] mb-1 w-full">
+    <Tabs defaultValue="leasing" className="w-full  dark:bg-[#292929] bg-[#f4f4f5] rounded-xl pt-0  pb-3 dark:text-white">
+      <TabsList className="flex justify-between dark:bg-[#3d3d3d] bg-[#cfcfcf] mb-1 w-full ">
         {[
           { value: "leasing", label: "Лізинг" },
           { value: "subscription", label: "Підписка" },
@@ -48,15 +48,15 @@ export const Tarifs = () => {
             value={tab.value}
             className={cn(
               "flex-1 rounded-t-[12px] rounded-b-0 text-xs  transition",
-              "data-[state=active]:bg-[#292929] data-[state=active]:text-[#ff0066] ",
-              "text-white pt-4 pb-3 "
+              "data-[state=active]:text-[#ff0066] ",
+              "dark:text-white pt-4 pb-3 "
             )}
           >
             {tab.label}
           </TabsTrigger>
         ))}
       </TabsList>
-        <div className="w-full  bg-[#292929] pt-0 px-3 pb-3 text-white">
+        <div className="w-full  dark:bg-[#292929] pt-0 px-3 pb-3 dark:text-white">
             <TabsContent value="leasing">
               <TabContent items={features.leasing} />
             </TabsContent>

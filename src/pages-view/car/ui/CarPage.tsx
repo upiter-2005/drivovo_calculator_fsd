@@ -48,13 +48,13 @@ export async function CarPage ({
 
       return (
         <>
-          <PhotoSlider data={car.data[0].acf} />
+          <PhotoSlider data={car.data[0].acf}  />
           <section className='bg-white dark:bg-black relative  z-11'>
             <CarPrices car={car.data} />
                
             <CompareTable car={car.data} />
             <Faq />
-            <CarReview text={car.data[0].acf.review} data={car.data[0].acf}/>
+            <CarReview text={car.data[0].acf.review} data={car.data[0].acf} photo={car.data[0].acf.adphoto_3}/>
             <SwapCars cars={cars.data} />
             <BrandsCars />
             <LeaderCars cars={cars.data} />

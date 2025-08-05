@@ -11,7 +11,7 @@ export const Section4:React.FC = () => {
                         Мінімум формальностей, максимум швидкості:
                         <li className="ml-4">Підготовка: повний бак, аптечка, комплект автомобіліста, парасолька та інші <span className="text-white font-[600]">плюшки вже є в авто.</span> </li>
                         <li className="ml-4">Видача: забираєте авто в Hub або <span className="text-white font-[600]">обираєте доставку на адресу.</span></li>
-                        <li className="ml-4">Онбордінг: <span className="text-white font-[600]">5–10 хв</span> коротких інструкцій — від поліса до підмінного авто.</li>
+                        <li className="ml-4">Онбордінг: <span className="dark:text-white font-[600]">5–10 хв</span> коротких інструкцій — від поліса до підмінного авто.</li>
                     </ol>
                  
 

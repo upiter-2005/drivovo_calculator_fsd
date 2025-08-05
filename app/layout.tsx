@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ThemeProvider } from "@/app/theme-provider";
+import Script from 'next/script'
+//import { ThemeProvider } from "@/app/theme-provider";
 import { MobMnuBtns } from "@/widgets/MobMnuBtns/ui/MobMnuBtns";
 import { Coockie } from "@/features/coockie";
 import { FooterWidget } from "@/widgets/footer";
@@ -46,16 +47,30 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+       <head>
+        {/* Скрипт для установки темы до гидрации */}
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`
+            (function() {
+              try {
+                const theme = localStorage.getItem('app-theme');
+                if (theme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (e) {}
+            })();
+          `}
+        </Script>
+      </head>
+
       <body className={`${Gilroy.className}  antialiased dark:bg-[#030303]`} >
-         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+        
             {children}
+             
             <FooterWidget />
-          </ThemeProvider>
+       
           <MobMnuBtns />
           <Coockie />
       </body>

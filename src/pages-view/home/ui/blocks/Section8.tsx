@@ -7,12 +7,13 @@ import { useEffect, useRef, useState } from "react";
 
 export const Section8:React.FC = () => {
     const section2Ref = useRef<HTMLDivElement>(null);
-            const autoVisible3 = useIsVisible(section2Ref, .45);
-            const [visible2, setVisible1] = useState(false);
-            
-                useEffect(() => {
-                setVisible1(autoVisible3);
-            }, [autoVisible3]);
+    const autoVisible3 = useIsVisible(section2Ref, .45);
+    const [visible2, setVisible1] = useState(false);
+    
+        useEffect(() => {
+        setVisible1(autoVisible3);
+    }, [autoVisible3]);
+    
     return (
         <div  ref={section2Ref}>
             <section className="bg-white dark:bg-black dark:text-white px-9 py-14 pr-3  max-w-[calc(100%-58px)]">

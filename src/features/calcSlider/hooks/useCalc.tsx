@@ -2,7 +2,7 @@ import { CalculatorProps } from "@/shared/types/carAcf"
 import { useEffect, useState } from "react";
 import { useDebounce } from "react-use";
 import { useCalcStore } from "../actions/calcStore";
-import { insertSpace } from "@/utils/insertSpace";
+//import { insertSpace } from "@/utils/insertSpace";
 
 type IUseCalc = CalculatorProps
 
@@ -14,10 +14,10 @@ export const useCalcSlider = (carDataObj: IUseCalc) => {
     const [sliderMonth, setSliderMonth] = useState<number>(12);
     const [sliderAvans, setSliderAvans] = useState<number>(10);
     const [sliderVykup, setSliderVykup] = useState<number>(25);
-    const [lizing, setLizing] = useState<string>("");
-    const [hiring, setHiring] = useState<string>("");
-    const [subscribe, setSubscribe] = useState<string>("");
-    const [debouncedValue, setDebouncedValue] = useState<string>(""); // for Car Card Price 
+    const [lizing, setLizing] = useState<number>(0);
+    const [hiring, setHiring] = useState<number>(0);
+    const [subscribe, setSubscribe] = useState<number>(0);
+    const [debouncedValue, setDebouncedValue] = useState<number>(0); // for Car Card Price 
 
     useEffect(()=> {
         setCar(carDataObj)
@@ -56,7 +56,7 @@ export const useCalcSlider = (carDataObj: IUseCalc) => {
         const D25 = D7 * (ransom / 100)
         const D11 = (tarif === 'subscribe') ? (D7*D9-D10-D25) / 36 : (D7*D9-D10-D25) / monthes
 
-        console.log(D11);
+        //console.log(D11);
 
         // additionals
         const D12 = D7 * 0.05 / 12
@@ -78,8 +78,9 @@ export const useCalcSlider = (carDataObj: IUseCalc) => {
              result =( D11 + (D12+ D13 + D15 + C16 + C17 + C18 + C19 + C20 + C21) )
         }
         
-        console.log(result);
-            return insertSpace(result.toFixed(0))
+        //console.log(result);
+            //return insertSpace(result.toFixed(0))
+            return result
         }
 
 

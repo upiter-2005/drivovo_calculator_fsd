@@ -1,16 +1,22 @@
 
-//import Image from "next/image";
+import Image from "next/image";
 
 import { IReview } from "@/shared/types/reviewsTypes"
 import { ReviewTop } from "@/shared/ui/ReviewTop"
 
-export const CarReview:React.FC<IReview> = ({text, data}) => {
+export const CarReview:React.FC<IReview> = ({text, data, photo}) => {
     return (
         <>
-       
+       <Image 
+            src={photo}
+            alt='drivovo' 
+            width={1440}
+            height={820}
+            className="w-full h-auto mt-6 "
+        />
         <section className="bg-white dark:bg-black dark:text-white px-9  pr-3  max-w-[calc(100%-58px)] mt-10 overflow-hidden">
            <ReviewTop data={data} />
-          <div className="text-[#c2c2c2] text-[15px] carReview mt-8">
+          <div className="dark:text-[#c2c2c2] text-[15px] carReview mt-8">
             {text ? <div dangerouslySetInnerHTML={{__html: text}} className="reviewBlock"></div> : <>
             <p> Спочатку про сам сервіс. Якщо ви ще не чули по цю компанію, то Drivovo - це авто за підпискою. Це вигідно  відрізняється від лізингу, аренди або купівлі. </p>
             <p>Тобто оформивши підписку, ви можете вибрати будь-яке авто з наявного автопарку та змінювати його за бажанням. Авжеж є і інші варіанти взаємодії, де ви можете обрати авто з правом викупу. Коротше, якщо цікаво, то звертається до хлопців з Drivovo за деталями.</p>

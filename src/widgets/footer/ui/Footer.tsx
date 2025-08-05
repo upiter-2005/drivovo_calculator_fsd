@@ -1,7 +1,17 @@
+'use client'
+import { useThemeStore } from "@/app/store/themeStore";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export const Footer:React.FC = () => {
+     const {setTheme} = useThemeStore()
+
+  useEffect(() => {
+    const saved = localStorage.getItem('app-theme') as 'dark' | 'light' | null
+    const theme = saved || 'light'
+    setTheme(theme)
+  }, [])
     return <footer className="px-9 flex flex-col gap-4 py-10 bg-white dark:bg-black dark:text-white relative z-100">
         
         <Link href="/"><Image 

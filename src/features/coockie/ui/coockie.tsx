@@ -31,13 +31,13 @@ export const Coockie:React.FC = () => {
 
     return (
         createPortal(
-            <div className={ isVisible ? "communicationModal activeModal" : "communicationModal" } >
+            <div className={ isVisible ? "communicationModal activeModal !z-[9999]" : "communicationModal z-[9999]" } >
                 <div className='flex flex-col gap-[6px]'>
                     <div className="flex items-center gap-3">
                         <Image src="/assets/images/coockie.png" width={44} height={31} alt="drivovo" />
                         <div className='leading-5 flex-1'>
                             Cookie потрібні щоб ви знову побачили нашу рекламу. <span className='font-black'>Це перша угода між нами</span> – і ми прагнемо бути чесними. <br />
-                            Read our 
+                            
                             <div> Детальніше в <Link href="#" className='text-[#f9521b] font-bold'>Privacy Policy.</Link> </div>
                         </div>
                         
