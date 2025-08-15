@@ -4,11 +4,14 @@ import { useState, useTransition } from "react";
 import { sendHubspotLead } from "../../../../app/actions/sendHubspotLead";
 import { usePathname } from 'next/navigation';
 import { quizStore } from "../store/quizStore";
-import { IStep6 } from './QuizForm';
+//import { IStep6 } from './QuizForm';
+import { fbq } from '@/lib/fbPixel';
+import Link from 'next/link';
+import { cn } from '@/utils/cn';
 
 
-export const  Step6:React.FC<IStep6> = ({closeForm}) => {
-    const {name, email, phone: formPhone, skills, profileLink, cofee, timeToSpeak, dayToSpeak, setSTimeToSpeak, setDayToSpeak, setSCofee  } = quizStore()
+export const  Step6:React.FC = () => {
+    const {name, email, phone: formPhone, skills, profileLink, cofee, timeToSpeak, dayToSpeak, setSTimeToSpeak, setDayToSpeak, setSCofee, activeTarif  } = quizStore()
     const [time, setTime] = useState<string>(dayToSpeak || "Сьогодні");
     const [phone, setPhone] = useState<string>(timeToSpeak || "Вдень");
     const [coffe, setCoffe] = useState<string>(cofee || "Americano");
@@ -51,6 +54,7 @@ export const  Step6:React.FC<IStep6> = ({closeForm}) => {
         try {
             await sendHubspotLead(formData);
             setFormCompleted(true)
+              fbq('track', 'Lead')
             
         } catch (error) {
             console.error(error);
@@ -62,17 +66,22 @@ export const  Step6:React.FC<IStep6> = ({closeForm}) => {
     if(formCompleted) return <>
         <div className="flex flex-col justify-center items-center mb-1">
             <Image src="/assets/images/complete.png" alt='drivovo' width={54} height={54} />
-            <p className='font-500 text-xl my-2'>Thanks for applying!</p>
-            <div className='text-center text-sm'>We received your application and will contact you soon.</div>
+            <p className='font-500 text-xl my-2'>Готово!</p>
+            <div className='text-center text-sm'>Менеджер незабаром з вами зв&apos;яжеться.</div>
         </div>
-        <button onClick={() => closeForm()}
+        {/* <button onClick={() => closeForm()}
             className="w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3"
-        >Got it</button>
+        >На голову</button> */}
+        <Link href="https://t.me/drive_it_easy_bot?start=661037fefd61cfc7ec0c6567" className={cn('w-full bg-[#28A9EB] text-white rounded-[10px] text-sm flex items-center justify-center p-[8px]')}> <Image src="/assets/images/telegram.svg" width={24} height={24} alt='telegram' className="mr-2" /> Продовжити в Telegram</Link>
     </>
     return (
         <>
             <div className="flex justify-between items-center mb-1">
-                <div>High-quality service</div>
+                
+                <div>
+                        <p className="linearText text-base mb-1.5">Тариф: {activeTarif}</p>
+                        <p className="text-xs">High-quality service  </p>
+                    </div>
                 <div>6/6</div>
             </div>
             {/* <p className="text-xs font-light">We don’t hold exams However, it’s important for us to understand you won’t park your car into the nearest pole.</p> */}

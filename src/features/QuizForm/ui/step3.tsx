@@ -8,12 +8,12 @@ export interface IStep1 {
 }
 
 export const Step3:React.FC<IStep1> = ({stepChange}) => {
-    const {email, setEmail} = quizStore()
+    const {email, setEmail, activeTarif} = quizStore()
     const [error, setError] = useState<string | null>(null)
 
     const validate = (val: string) => {
         if(!isValidEmail(val)) {
-            setError('Невырний формат пошти');
+            setError('Невірний формат пошти');
             return false;
         }
         stepChange()
@@ -23,10 +23,14 @@ export const Step3:React.FC<IStep1> = ({stepChange}) => {
           {
             <div>
                 <div className="flex justify-between items-center mb-1">
-                    <div>Enter your email</div>
+                    <div>
+                        <p className="linearText text-base mb-1.5">Тариф: {activeTarif}</p>
+                        <p className="text-xs">Email  </p>
+                    </div>
+                    <div></div>
                     <div>3/6</div>
                 </div>
-                {/* <p className="text-xs font-light">For us to agree on the details of the test drive</p> */}
+                <p className="text-xs font-light">Для відправки розрахунку, графіків платежів та шаблонів договорів.</p>
                 <Input type='email' placeholder='Enter Your Email' className="mt-3" value={email} changeVal={(e)=>setEmail(e.target.value)}/>
                
                 {error && <p className="text-[10px] text-red-600 m-0">{error}</p>}

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Script from 'next/script'
-//import { ThemeProvider } from "@/app/theme-provider";
+import Script from 'next/script';
 import { MobMnuBtns } from "@/widgets/MobMnuBtns/ui/MobMnuBtns";
 import { Coockie } from "@/features/coockie";
 import { FooterWidget } from "@/widgets/footer";
@@ -57,20 +56,80 @@ export default function RootLayout({
                 if (theme === 'dark') {
                   document.documentElement.classList.add('dark');
                 } else {
-                  document.documentElement.classList.remove('dark');
+                  
                 }
               } catch (e) {}
             })();
           `}
         </Script>
+         <Script
+          id="gtm-head"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-TB57WSB3');
+            `,
+          }}
+        />
+         <Script
+          id="hs-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/20308897.js"></script>`,
+          }}
+        />
+         <Script
+          id="hj-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:6487023,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`,
+          }}
+        />
+         <Script
+          id="fb-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '1354080139767613');
+              fbq('track', 'PageView');
+              `,
+          }}
+        />
       </head>
 
       <body className={`${Gilroy.className}  antialiased dark:bg-[#030303]`} >
-        
-            {children}
-             
-            <FooterWidget />
        
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TB57WSB3"
+        height="0" width="0"  style={{ display: 'none', visibility: 'hidden' }}></iframe></noscript>
+
+         <noscript
+          dangerouslySetInnerHTML={{
+            __html: `<img height="1" width="1" style="display:none"
+              src="https://www.facebook.com/tr?id=1354080139767613&ev=PageView&noscript=1"
+            />`,
+          }}
+        />
+            {children}
+            <FooterWidget />
           <MobMnuBtns />
           <Coockie />
       </body>

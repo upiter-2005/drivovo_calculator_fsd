@@ -3,6 +3,7 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 
 
 interface IQuizStore {
+    activeTarif: string,
     car: string,
     name: string,
     phone: string,
@@ -21,12 +22,14 @@ interface IQuizStore {
     setSTimeToSpeak: (val: string) => void,
     setDayToSpeak: (val: string) => void,
     setSCofee: (val: string) => void,
+    setActiveTarif: (val: string) => void,
 }
 
 export const quizStore = create<IQuizStore>()(
   persist(
     (set) => (
       {
+        activeTarif: 'Лізінг',
         car: '',
         name: '',
         phone: '',
@@ -63,6 +66,9 @@ export const quizStore = create<IQuizStore>()(
         setSCofee: (val) => {
             set({cofee: val})
         },
+        setActiveTarif: (val) => {
+            set({activeTarif: val})
+        },
         
       }
     ),
@@ -80,6 +86,7 @@ export const quizStore = create<IQuizStore>()(
         timeToSpeak: state.timeToSpeak,
         dayToSpeak: state.dayToSpeak,
         cofee: state.cofee,
+        activeTarif: state.activeTarif,
        
        }),
     }

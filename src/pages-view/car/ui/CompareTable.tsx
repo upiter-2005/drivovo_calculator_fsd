@@ -5,15 +5,19 @@ import { CheckImage } from "@/shared/ui/check";
 import { DisableIco } from "@/shared/ui/DisableIco";
 import Image from "next/image";
 
+
 export interface IcarSingle {
     car: CarData[] 
 }
 
 export const CompareTable:React.FC<IcarSingle> = ({car}) => {
   const { lizing, hiring, subscribe} = useCalcSlider(car[0].acf.calculator_props)
+
+     
+
     return (
         <>
-            <section className="bg-white dark:bg-black dark:text-white px-4 pr-0 pt-10 text-[#b9b9b9]">
+            <section  className="bg-white dark:bg-black dark:text-white px-4 pr-0 pt-10 text-[#b9b9b9]">
               
               <div className=" overflow-y-auto rounded-lg border border-[#292929] ">
                 
@@ -127,6 +131,8 @@ export const CompareTable:React.FC<IcarSingle> = ({car}) => {
                   height={820}
                   className="w-full h-auto mt-6 "
               />
+
+               
         </>
     )
 

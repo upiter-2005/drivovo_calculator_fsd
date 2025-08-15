@@ -25,6 +25,7 @@ export const Coockie:React.FC = () => {
     }
     const declineCoockies = () => {
         setIsVisible(false);
+        window.localStorage.setItem("coockie-drivovo", "0");
     }
 
     if (!isVisible) return null;

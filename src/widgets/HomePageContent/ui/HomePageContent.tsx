@@ -14,22 +14,33 @@ import { Section10 } from "./blocks/Section10";
 import { Section11 } from "./blocks/Section11";
 import { Section12 } from "./blocks/Section12";
 import { Section13 } from "./blocks/Section13";
-import { CarData } from "@/shared/types/carAcf";
+//import { CarData } from "@/shared/types/carAcf";
 import { SwapCars } from "@/widgets/swapCars";
 import { LeaderCars } from "@/widgets/leaderCars";
 import { BrandsCars } from "@/widgets/brandsCars";
 import { SuvCars } from "@/widgets/suvCars";
 import { SecondCar } from "@/widgets/SecondCar";
 import { useEffect } from "react";
-//import { ModeToggler } from "@/shared/ui/modeToggler";
+import { useLocationStore } from "@/app/store/locationStore";
+const fetcher = (url: string) => fetch(url).then(res => {
+  //if (!res.ok) throw new Error('Fetch failed')
+  return res.json()
+})
+import useSWR from 'swr'
 
 
-
-interface IHomePageContent {
-  cars: CarData[] | null
-}
-export  const HomePageContent:React.FC<IHomePageContent> = ({cars}) => {
-   
+// interface IHomePageContent {
+//   cars: CarData[] | null
+//   location: string
+// }
+export  const HomePageContent:React.FC = () => {
+   //const {location} = useLocationStore()
+   const location = useLocationStore(state => state.location)
+   console.log(location);
+   const url = location ? `${process.env.NEXT_PUBLIC_API_URL}/${location}?_fields=acf&acf_format=standard&per_page=70&order=asc` : ""
+   console.log(url);
+    const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/${location}?_fields=acf&acf_format=standard&per_page=70&order=asc`, fetcher)
+    console.log(data);
 
     const pathname = usePathname()
     useEffect(() => {
@@ -39,11 +50,15 @@ export  const HomePageContent:React.FC<IHomePageContent> = ({cars}) => {
         const el = document.getElementById(id)
         if (el) {
             setTimeout(() => {
-            el.scrollIntoView({ behavior: 'smooth' }) // или 'auto'
+            el.scrollIntoView({ behavior: 'smooth' }) 
             }, 800)
         }
         }
     }, [pathname])
+
+  if (isLoading) return <div>Загрузка...</div>
+  if (error) return <div>Ошибка загрузки</div>
+   
     return (
         <>
          <main>
@@ -67,11 +82,11 @@ export  const HomePageContent:React.FC<IHomePageContent> = ({cars}) => {
             <Section3 />
             <Section4 />
             <Section5 />
-            <SwapCars cars={cars} />
+            <SwapCars cars={data} />
             <BrandsCars />
-            <LeaderCars cars={cars} />
+            <LeaderCars cars={data} />
             <SuvCars />
-            <SecondCar cars={cars} />
+            <SecondCar cars={data} />
             <Section6 />
             <Section7 />
             <Section8 />

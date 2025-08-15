@@ -1,17 +1,11 @@
 import { fetchData } from '@/shared/api/helpers/fetchData'
 import { CarData } from '@/shared/types/carAcf'
-import { CarPrices } from '@/widgets/carPrices/ui/CarPrices'
 import { notFound } from 'next/navigation'
 //import { Block2 } from './Block2'
-import { CompareTable } from './CompareTable'
-import { SwapCars } from '@/widgets/swapCars'
-import { LeaderCars } from '@/widgets/leaderCars'
-import { BrandsCars } from '@/widgets/brandsCars'
-import { SuvCars } from '@/widgets/suvCars'
+
 import { PhotoSlider } from './PhotoSlider'
-import { Faq } from './Faq'
-import { CarReview } from './CarReview'
-import { SecondCar } from '@/widgets/SecondCar'
+
+import { CarPriCarWidgetAreaces } from './CarWidgetArea'
 
 //import type { Metadata } from 'next'
 
@@ -41,7 +35,7 @@ export async function CarPage ({
     //   ).then(res => res.json())
 
      const car = await fetchData<CarData[]>(`${process.env.NEXT_PUBLIC_API_URL}/nextcar?slug=${id}&_fields=acf&acf_format=standard`, 
-       //{ next: { revalidate: 60 } }
+       { next: { revalidate: 60 } }
       )
    
      if (car.error || !car.data) return notFound()
@@ -49,17 +43,8 @@ export async function CarPage ({
       return (
         <>
           <PhotoSlider data={car.data[0].acf}  />
-          <section className='bg-white dark:bg-black relative  z-11'>
-            <CarPrices car={car.data} />
-               
-            <CompareTable car={car.data} />
-            <Faq />
-            <CarReview text={car.data[0].acf.review} data={car.data[0].acf} photo={car.data[0].acf.adphoto_3}/>
-            <SwapCars cars={cars.data} />
-            <BrandsCars />
-            <LeaderCars cars={cars.data} />
-            <SuvCars />
-            <SecondCar cars={cars.data} />
+          <section className='bg-white dark:bg-black relative  z-11' >
+            <CarPriCarWidgetAreaces car={car.data} cars={cars.data} />
           </section>
           
         </>

@@ -5,7 +5,7 @@ import { RadioGroup, RadioGroupItem } from "@/shared/ui/radio-group"
 import { quizStore } from "../store/quizStore"
 
 export const Step4:React.FC<IStep1> = ({stepChange}) => {
-    const {skills, setSkills} = quizStore()
+    const {skills, setSkills, activeTarif} = quizStore()
     const validate = () => { 
         stepChange()
     }
@@ -15,7 +15,10 @@ export const Step4:React.FC<IStep1> = ({stepChange}) => {
           {
             <div>
                 <div className="flex justify-between items-center mb-1">
-                    <div>Your driving skills:</div>
+                    <div>
+                        <p className="linearText text-base mb-1.5">Тариф: {activeTarif}</p>
+                        <p className="text-xs">Your driving skills:  </p>
+                    </div>
                     <div>4/6</div>
                 </div>
                 <p className="text-xs font-light">We don’t hold exams However, it’s important for us to understand you won’t park your car into the nearest pole.</p>

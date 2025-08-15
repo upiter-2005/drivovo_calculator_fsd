@@ -4,6 +4,15 @@ import Image from "next/image";
 import { IReview } from "@/shared/types/reviewsTypes"
 import { ReviewTop } from "@/shared/ui/ReviewTop"
 
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/shared/ui/carousel"
+import { reviewsArr } from "@/features/intersections/store/reviewsArray";
 export const CarReview:React.FC<IReview> = ({text, data, photo}) => {
     return (
         <>
@@ -32,6 +41,51 @@ export const CarReview:React.FC<IReview> = ({text, data, photo}) => {
           </div>
         </section>
          
+
+         <section className="bg-white dark:bg-black dark:text-white px-9  pr-3  max-w-[calc(100%-58px)] mt-10  ">
+          <Carousel className="w-full innerCarousel"  opts={{
+                                                align: "start",
+                                                loop: true,
+                                              }} >
+                    <CarouselContent>
+                      {reviewsArr.map((review, index) => (
+                        <CarouselItem key={index} >
+                            <div className="relative w-full flex gap-1.5 items-center justify-start ">
+                              <div className="w-8">
+                                 <Image 
+                                    src={review.avatar}
+                                    alt='drivovo' 
+                                    width={32}
+                                    height={32}
+                                    className="rounded-full"
+                                /> 
+                              </div>
+                      
+                              <div className='flex flex-col'>
+                                <p className="text-xs">{review.name}</p>
+                                <span className="text-xs dark:text-[#646464]">{review.status}</span>
+                              </div>
+                              
+                              <div className="absolute right-0 top-0">
+                                <Image 
+                                  src='/assets/images/stars.png' 
+                                  alt='drivovo' 
+                                  width={72}
+                                  height={14}
+                                  className=""
+                                />
+                              </div>
+                            </div>
+                            <div className="dark:text-[#c2c2c2] text-[#6b6969] text-[12px] carReview mt-1">
+                              <p className='!mb-0'> {review.text}</p>
+                            </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                  </Carousel>
+         </section>
               
         </>
     )

@@ -7,7 +7,7 @@ export interface IStep1 {
 }
 
 export const Step1:React.FC<IStep1> = ({stepChange}) => {
-    const {name, setName} = quizStore()
+    const {name, setName, activeTarif} = quizStore()
     const [error, setError] = useState<string | null>(null)
     const validate = (val: string) => {
         console.log("validate");
@@ -23,12 +23,15 @@ export const Step1:React.FC<IStep1> = ({stepChange}) => {
           {
             <div>
                 <div className="flex justify-between items-center mb-1">
-                    <div>Enter your name</div>
+                    <div>
+                        <p className="linearText text-base mb-1.5">Тариф: {activeTarif}</p>
+                        <p className="text-xs">Як до вас звертатися?</p>
+                    </div>
                     <div>1/6</div>
                 </div>
                 {/* <p className="text-xs font-light">For us to agree on the details of the test drive</p> */}
                 <Input 
-                    placeholder='Enter Your Name' 
+                    placeholder="Ваше ім'я" 
                     className="mt-3"
                     value={name}
                     changeVal={(e)=>setName(e.target.value)}

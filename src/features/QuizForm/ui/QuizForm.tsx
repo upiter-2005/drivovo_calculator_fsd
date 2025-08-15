@@ -10,7 +10,7 @@ import { Step6 } from "./step6";
 export interface IStep6 {
     closeForm: () => void
 }
-export const QuizForm:React.FC<IStep6> = ({closeForm}) => {
+export const QuizForm:React.FC<IStep6> = () => {
     const [step, setStep] = useState<number>(1);
     const stepChange = () => {
         setStep(prev => prev + 1)
@@ -24,7 +24,7 @@ export const QuizForm:React.FC<IStep6> = ({closeForm}) => {
                 {step === 3 && <Step3 stepChange={stepChange} />}
                 {step === 4 && <Step4 stepChange={stepChange} />}
                 {step === 5 && <Step5 stepChange={stepChange} />}
-                {step === 6 && <Step6 closeForm={closeForm}  />}
+                {step === 6 && <Step6   />}
             </div>
       </>
   )

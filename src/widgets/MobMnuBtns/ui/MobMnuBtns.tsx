@@ -9,13 +9,14 @@ import { Menu } from './Menu'
 import { CalcSlider } from '@/features/calcSlider'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { CalcSuccess } from '@/features/calcSlider/ui/calcSuccess'
 // import { PortalComponent } from '@/shared/ui/PortalComponent'
 
 interface IMobMnuBtns {
     className?: string
 }
 
-export type activeModalType = "call" | "chat" | "menu" | "calc" | "location" | "";
+export type activeModalType = "call" | "chat" | "menu" | "calc" | "location" | "success" | "";
 
 export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
     const [activeModal, setactiveModal] = useState<activeModalType>('');
@@ -86,9 +87,9 @@ export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
             <Chat isActive={activeModal === "chat"} disableModal={()=>setactiveModal("")} />
             <Menu isActive={activeModal === "menu"} disableModal={()=>setactiveModal("")} />
             <Location isActive={activeModal === "location"} disableModal={()=>setactiveModal("")} />
-              
-            
-            <CalcSlider isActive={activeModal === "calc"} disableModal={()=>setactiveModal("")} />
+            <CalcSlider isActive={activeModal === "calc"} disableModal={()=>setactiveModal("")} openSuccess={ () => setactiveModal("success") } />
+            <CalcSuccess isActive={activeModal === "success"} disableModal={()=>setactiveModal("")} />
+                
 
         </div>
     )

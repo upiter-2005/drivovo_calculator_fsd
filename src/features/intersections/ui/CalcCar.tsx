@@ -4,7 +4,7 @@ import Image from "next/image";
 import { CarData } from "@/shared/types/carAcf";
 import useSWR from 'swr'
 import { useCalcStore } from "@/features/calcSlider/actions/calcStore";
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 const fetcher = (url: string) => fetch(url).then(res => {
   //if (!res.ok) throw new Error('Fetch failed')
   return res.json()
@@ -15,7 +15,7 @@ export const CalcCar:React.FC = () => {
     const [selectedCar, setSelectedCar] = useState<string>('');
     const [carUrl, setCarUrl] = useState<string>('');
     const [openCars, setOpenCars] = useState<boolean>(false);
-
+const router = useRouter()
 
  
     const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/nextcar?_fields=acf&acf_format=standard&per_page=70&order=asc`, fetcher)
@@ -23,7 +23,7 @@ export const CalcCar:React.FC = () => {
     
     const calcRedirect = (url: string): void => {
         setIsCalcOpen(true)
-        redirect(`${url}#tarifSell`)
+        router.push(`${url}#car-props`)
     }
 
 

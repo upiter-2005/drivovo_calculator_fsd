@@ -10,6 +10,7 @@ export const useCalcSlider = (carDataObj: IUseCalc) => {
 
     const {avans, residual, months, sliderMoved} = useCalcStore()
 
+    
     const [car, setCar] = useState<CalculatorProps>();
     const [sliderMonth, setSliderMonth] = useState<number>(12);
     const [sliderAvans, setSliderAvans] = useState<number>(10);

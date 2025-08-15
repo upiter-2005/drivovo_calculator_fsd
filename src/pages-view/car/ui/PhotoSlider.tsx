@@ -38,11 +38,18 @@ export const PhotoSlider:React.FC<CarData> = ({data}) => {
   }, [data])
 
   useEffect(() => {
+
+  window.scrollTo({
+      top: 470,
+      behavior: 'smooth', // можно убрать для мгновенного скролла
+    })
+
+
     const handleScroll = () => {
       if (!secondBlockRef.current) return
       const rect = secondBlockRef.current.getBoundingClientRect()
       if (rect.top <= 0) {
-        setSliderZ("-z-0")
+        setSliderZ("-z-10")
       } else {
         setSliderZ("z-0")
       }
@@ -80,7 +87,7 @@ export const PhotoSlider:React.FC<CarData> = ({data}) => {
         </Swiper>
       </section>
 
-    <section className='bg-white dark:bg-black relative rounded-t-sm shadow-lg' ref={secondBlockRef}>
+    <section className='bg-white dark:bg-black relative rounded-t-sm shadow-lg' ref={secondBlockRef} id="car-props">
       <div  className="bg-white dark:bg-black dark:text-white px-9  pr-3  max-w-[calc(100%-58px)] relative rounded-t-sm ">
         <h1 className="text-[36px] leading-[42px] font-[600] mb-2 linearText pt-8">{data.car_name} </h1>
         <div className="font-semibold  text-2xl mb-5"> від <span className="font-semibold linearText text-2xl mb-5">$ <AnimatedNumber value={lizing} duration={1300} format={true} /> /міс.</span> </div>

@@ -3,13 +3,17 @@ import { RedButton } from "@/shared/ui/redButton"
 import { useState, useTransition } from "react"
 import { callRingostat } from "../../../../app/actions/ringostat"
 
+ 
 export const CallbackForm:React.FC = ({}) => {
     const [phone, setPhone] = useState('')
     const [pending, startTransition] = useTransition()
     const [success, setSuccess] = useState(false)
+    const [error, setError] = useState<string | null>(null)
 
     const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+      if(phone.length < 6) {setError('Занадто короткий номер'); return false;};
+      setError("")
+     e.preventDefault()
     startTransition(async () => {
       const result = await callRingostat(phone)
       console.log(result);
@@ -24,9 +28,10 @@ export const CallbackForm:React.FC = ({}) => {
                     <Input placeholder='093 000 00 00 ' value={phone} changeVal={e=>setPhone(e.target.value)} />
                     </div>
             </div>
-            
+             {error && <p className="text-[10px] text-red-600 m-0">{error}</p>}
             <RedButton text={pending ? 'Викликаємо...' : 'Подзвонити'} submit={true} />
             {success && <p className="text-green-500">Менеджер скоро зателефонує 📞</p>}
+              
         </form>
     )
 }

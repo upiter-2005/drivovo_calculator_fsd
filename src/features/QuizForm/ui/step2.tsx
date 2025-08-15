@@ -6,12 +6,12 @@ import { Input } from "@/shared/ui/input"
 import { isValidPhone } from "@/utils/isValidatePhone"
 
 export const Step2:React.FC<IStep1> = ({stepChange}) => {
-   const {phone, setPhone} = quizStore()
+   const {phone, setPhone, activeTarif} = quizStore()
     const [error, setError] = useState<string | null>(null)
         const validate = (val: string) => {
             console.log("validate");
             if(!isValidPhone(val)) {
-                setError('Невырний формат номеру');
+                setError('Невірний формат номеру');
                 return false;
             }
             stepChange()
@@ -19,14 +19,17 @@ export const Step2:React.FC<IStep1> = ({stepChange}) => {
     return (
             <>
             <div className="flex justify-between items-center mb-1">
-                    <div>Enter your contact details</div>
+                <div>
+                    <p className="linearText text-base mb-1.5">Тариф: {activeTarif}</p>
+                    <p className="text-xs">Phone</p>
+                </div>
                     <div>2/6</div>
                 </div>
-                <p className="text-xs font-light">For us to agree on the details of the test drive</p>
+                <p className="text-xs font-light">Щоб закріпити за номером персонального менеджера та бонусний рахунок.</p>
                
                 <div className='flex gap-[6px] mt-3 mb-[6px] w-full'>
                 
-                    <div className='w-[77px]'><Input placeholder="+038" value="+380" disabled={true} changeVal={() => {return true;}} />
+                    <div className='w-[77px]'><Input placeholder="+038" value="+38" disabled={true} changeVal={() => {return true;}} />
                         </div>
                         <div className="flex-1">
                             

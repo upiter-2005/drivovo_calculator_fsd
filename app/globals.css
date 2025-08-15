@@ -191,7 +191,17 @@
 	animation: deAnimModal 0.5s ease-out;
 }
 
-
+.innerCarousel{
+  position: relative;
+}
+.innerCarousel button{
+  display: none!important;
+}
+/* .innerCarousel button:last-child{
+position: absolute!important;
+  top: 100%!important;
+  right: 0!important;
+} */
 @keyframes animModal {
 	from {
 		opacity: 0;

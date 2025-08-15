@@ -33,7 +33,7 @@ export const Chat:React.FC = () => {
                       <div className='bg-[#e6e6e6] dark:bg-[#1b1b1b] dark:text-white text-black py-2 px-[16px] rounded-[8px] flex justify-between items-center text-sm'>Ти ще тут?</div>
                       {mes2 && <div className='bg-[#e6e6e6] dark:bg-[#1b1b1b] dark:text-white text-black py-2 px-[16px] rounded-[8px] flex justify-between items-center text-sm'>По собі знаю, як бісять загтовлені відповіді в чаті.</div>}
                       {mes3 && <div className='bg-[#e6e6e6] dark:bg-[#1b1b1b] dark:text-white text-black py-2 px-[16px] rounded-[8px] flex justify-between items-center text-sm'>Зручно в телеграм перейти? Я там назвʼязку завжди.</div>}
-                      {tg && <a href="#" type="submit"  className={cn('w-full bg-[#28A9EB] text-white rounded-[10px] text-sm flex items-center justify-center p-[8px]')}> <Image src="/assets/images/telegram.svg" width={24} height={24} alt='telegram' className="mr-2" /> Telegram</a>}
+                      {tg && <a href="https://t.me/drive_it_easy_bot?start=687bc3e945aadfa25d04fea6" target="_blank"  className={cn('w-full bg-[#28A9EB] text-white rounded-[10px] text-sm flex items-center justify-center p-[8px]')}> <Image src="/assets/images/telegram.svg" width={24} height={24} alt='telegram' className="mr-2" /> Telegram</a>}
                       
                       
                     </div>

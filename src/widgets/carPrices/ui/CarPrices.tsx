@@ -3,6 +3,7 @@ import { useCalcSlider } from "@/features/calcSlider/hooks/useCalc";
 import { AnimatedNumber } from "@/features/calcSlider/ui/AnimatedNumber";
 
 import { QuizForm } from "@/features/QuizForm";
+import { quizStore } from "@/features/QuizForm/store/quizStore";
 import {  CarData } from "@/shared/types/carAcf";
 import { PortalComponent } from "@/shared/ui/PortalComponent";
 import Image from 'next/image';
@@ -14,26 +15,21 @@ export interface IcarSingle {
 
 export const CarPrices:React.FC<IcarSingle> = ({car}) => {
     const { lizing, hiring, subscribe} = useCalcSlider(car[0].acf.calculator_props)
-    const [activeTarif, setActiveTarif] = useState('')
-
-   
-        //const autoVisible3 = useIsVisible(section2Ref, .45);
-        const [visible2, setVisible1] = useState(false);
+    const {activeTarif, setActiveTarif} = quizStore()
+    const [visible2, setVisible1] = useState(false);
         
-        //     useEffect(() => {
-        //     setVisible1(autoVisible3);
-        // }, [autoVisible3]);
+        
         
     if(!car) return (<>Error</>)
     return (
           <>
            
-            <section id="tarifSell"  className="bg-white dark:bg-black dark:text-white px-9  pr-3  max-w-[calc(100%-58px)]">
+            <section id="tarifSell"  className="bg-white dark:bg-black dark:text-white px-9  pr-3  max-w-[calc(100%-58px)]" >
                 
                 <p className="text-[16px] leading-[22px] font-[500] py-3">Обирай тариф: </p>
 
-                <div className={`dark:text-[#b9b9b9] text-[#494949] border-1 border-[#747474] rounded-[10px] p-[11px] mb-4 ${activeTarif === 'lizing' && 'border-[#de324b]'}`}
-                  onClick={() => {setActiveTarif('lizing'); setVisible1(true)}}
+                <div className={`dark:text-[#b9b9b9] text-[#494949] border-1 border-[#747474] rounded-[10px] p-[11px] mb-4 ${activeTarif === 'Лізінг' && 'border-[#de324b]'}`}
+                  onClick={() => {setActiveTarif('Лізінг'); setVisible1(true)}}
                 >
                     <div className="flex w-full justify-between items-center ">
                       <div className="text-xl font-medium dark:text-[#fff] text-[#494949]">Лізинг</div>
@@ -46,8 +42,8 @@ export const CarPrices:React.FC<IcarSingle> = ({car}) => {
                     </ul>
                 </div>
 
-                <div className={` dark:text-[#b9b9b9] text-[#494949] border-1 border-[#747474] rounded-[10px] p-[11px] mb-4 ${activeTarif === 'subscribe' && 'border-[#de324b]'}` }
-                 onClick={() => {setActiveTarif('subscribe'); setVisible1(true)}}
+                <div className={` dark:text-[#b9b9b9] text-[#494949] border-1 border-[#747474] rounded-[10px] p-[11px] mb-4 ${activeTarif === 'Підписка' && 'border-[#de324b]'}` }
+                 onClick={() => {setActiveTarif('Підписка'); setVisible1(true)}}
                  >
                     <div className="flex w-full justify-between items-center ">
                       <div className="text-xl font-medium dark:text-[#fff] text-[#494949]">Підписка</div>
@@ -60,8 +56,8 @@ export const CarPrices:React.FC<IcarSingle> = ({car}) => {
                     </ul>
                 </div>
 
-                <div className={` dark:text-[#b9b9b9] text-[#494949] border-1 border-[#747474] rounded-[10px] p-[11px] mb-4 ${activeTarif === 'hiring' && 'border-[#de324b]'}`}
-                 onClick={() => {setActiveTarif('hiring'); setVisible1(true)}}
+                <div className={` dark:text-[#b9b9b9] text-[#494949] border-1 border-[#747474] rounded-[10px] p-[11px] mb-4 ${activeTarif === 'Оренда' && 'border-[#de324b]'}`}
+                 onClick={() => {setActiveTarif('Оренда'); setVisible1(true)}}
                  >
                     <div className="flex w-full justify-between items-center ">
                       <div className="text-[16px] font-medium dark:text-[#fff] text-[#494949]">Оренда від 6 міс.</div>

@@ -19,8 +19,11 @@ import { CloseIcon } from "@/shared/ui/closeIcon";
 interface IcalcSlider {
     isActive?: boolean,
     disableModal: () => void
+    openSuccess: () => void
 }
-export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal}) => {
+export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal, openSuccess}) => {
+
+    //const [formCompleted, setFormCompleted] = useState<boolean>(false);
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [showRansom, setShowRansom] = useState<boolean>(false);
     const refCalc = useRef(null);
@@ -46,12 +49,31 @@ export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal}) => {
 
     if (!mounted) return null;
 
+    // if(formCompleted) return (
+    //       <>
+    //         {
+    //             createPortal(
+                     
+    //                 <div className="flex flex-col justify-center items-center mb-1">
+    //             <Image src="/assets/images/complete.png" alt='drivovo' width={54} height={54} />
+    //             <p className='font-500 text-xl my-2'>Готово!</p>
+    //             <div className='text-center text-sm'>Менеджер незабаром з вами зв&apos;яжеться.</div>
+    //         </div> 
+            
+    //             ,
+    //                 window.document.body
+    //             )
+    //         }
+    //     </>
+    // )
+
     return (
           <>
             {
                 createPortal(
+                   
                     <div className={ (isVisible) ? "portalCommunicationModal activeModal" : "portalCommunicationModal" }
-                     ref={refCalc} 
+                     
                      >
                     <CloseIcon closeHandler={() => {setIsVisible(false); disableModal(); } } />
                         <div className='flex flex-col gap-[7px] mb-3 text-white'>
@@ -146,7 +168,7 @@ export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal}) => {
                             </>
                             )}
                         </div>
-                        <button className={cn('w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px]')} onClick={()=>console.log()}>Розрахувати</button>
+                        <button className={cn('w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px]')} onClick={()=> {openSuccess(); setIsVisible(false);}}>Розрахувати</button>
                       
                     </div>,
                     window.document.body
