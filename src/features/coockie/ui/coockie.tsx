@@ -16,7 +16,6 @@ export const Coockie:React.FC = () => {
             setIsVisible(false);
         }
 
-        console.log(isVisible);
     }, [isVisible])
 
     const setCoockies = () => {
@@ -39,7 +38,7 @@ export const Coockie:React.FC = () => {
                         <div className='leading-5 flex-1'>
                             Cookie потрібні щоб ви знову побачили нашу рекламу. <span className='font-black'>Це перша угода між нами</span> – і ми прагнемо бути чесними. <br />
                             
-                            <div> Детальніше в <Link href="#" className='text-[#f9521b] font-bold'>Privacy Policy.</Link> </div>
+                            <div> Детальніше в <Link href="/politika" className='text-[#f9521b] font-bold'>Privacy Policy.</Link> </div>
                         </div>
                         
                     </div>

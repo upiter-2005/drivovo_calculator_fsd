@@ -1,0 +1,1 @@
+export {MaxPage as default} from '@/pages-view/max'

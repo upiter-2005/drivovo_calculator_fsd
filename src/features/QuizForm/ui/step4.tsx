@@ -17,11 +17,11 @@ export const Step4:React.FC<IStep1> = ({stepChange}) => {
                 <div className="flex justify-between items-center mb-1">
                     <div>
                         <p className="linearText text-base mb-1.5">Тариф: {activeTarif}</p>
-                        <p className="text-xs">Your driving skills:  </p>
+                        <p className="text-xs">Ваш рівень водіння:</p>
                     </div>
                     <div>4/6</div>
                 </div>
-                <p className="text-xs font-light">We don’t hold exams However, it’s important for us to understand you won’t park your car into the nearest pole.</p>
+                <p className="text-xs font-light">Ми не проводимо іспити, але нам важливо розуміти, що ви не припаркуєте авто в найближчий стовп.</p>
                 <RadioGroup defaultValue={skills || "«Блискавка» (початковий)"} className="py-3" onValueChange={(val) => setSkills(val)}>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="«Блискавка» (початковий)" id="r1" className="border-[#F9521B] w-5 h-5" />
@@ -38,8 +38,8 @@ export const Step4:React.FC<IStep1> = ({stepChange}) => {
                     </RadioGroup>
                 
                 <div className="flex justify-between gap-2">
-                    <button className="w-full border border-[#FE31A1] textLinear text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" onClick={stepChange}>Skip</button>   
-                    <button className="w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" onClick={validate}>Next</button>
+                    <button className="w-full border border-[#FE31A1] textLinear text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" onClick={stepChange}>Пропустити</button>   
+                    <button className="w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" onClick={validate}>Далі</button>
                 </div>
                 
             </div>

@@ -13,12 +13,13 @@ export const useLocationStore = create<ILocationState>()(
         location: 'nextcar',
         setLocation: (val) => {
           set({location: val})
+          window.location.reload()
         },
        
       }
     ),
     {
-      name: 'drivovo fsd',
+      name: 'drivovo loc',
       version: 0.1,
       storage: createJSONStorage(()=> localStorage),
        partialize: (state) => ({location: state.location }),

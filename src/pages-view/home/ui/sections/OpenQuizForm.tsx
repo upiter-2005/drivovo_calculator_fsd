@@ -7,7 +7,7 @@ export const OpenQuizForm:React.FC = () => {
 
     const openQuizForm = () => {
         activeBlockHandler("openQuizForm")
-        console.log("openQuizForm");
+       
     }
 
     return (

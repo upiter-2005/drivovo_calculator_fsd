@@ -9,7 +9,7 @@ export const Step2:React.FC<IStep1> = ({stepChange}) => {
    const {phone, setPhone, activeTarif} = quizStore()
     const [error, setError] = useState<string | null>(null)
         const validate = (val: string) => {
-            console.log("validate");
+           
             if(!isValidPhone(val)) {
                 setError('Невірний формат номеру');
                 return false;
@@ -43,7 +43,7 @@ export const Step2:React.FC<IStep1> = ({stepChange}) => {
                 </div>
 
                  {error && <p className="text-[10px] text-red-600 m-0">{error}</p>}
-                <button className="w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" onClick={() => validate(phone)}>Next</button>
+                <button className="w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" onClick={() => validate(phone)}>Далі</button>
             </>
                 
             

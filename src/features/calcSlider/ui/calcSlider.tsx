@@ -31,7 +31,6 @@ export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal, openSu
     const {avans, residual, months, setAvans, setMonths, setResidual, isCalcOpen} = useCalcStore();
 
     useClickAway(refCalc, () => {
-        console.log("handler child");
         setIsVisible(false);
         disableModal();   
     });
@@ -44,7 +43,6 @@ export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal, openSu
         if (isActive || isCalcOpen) {
             setIsVisible(true);
         }
-        console.log(isActive);
     }, [isActive, isCalcOpen])
 
     if (!mounted) return null;
@@ -72,61 +70,76 @@ export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal, openSu
             {
                 createPortal(
                    
-                    <div className={ (isVisible) ? "portalCommunicationModal activeModal" : "portalCommunicationModal" }
+                    <div className={ (isVisible) ? "portalCommunicationModalRight activeModal" : "portalCommunicationModalRight" }
                      
                      >
                     <CloseIcon closeHandler={() => {setIsVisible(false); disableModal(); } } />
-                        <div className='flex flex-col gap-[7px] mb-3 text-white'>
-                            <div className='flex items-center justify-between w-full pb-3'>
-                                    <span className='linearText font-bold'>
-                                         <AnimatedNumber value={months} /> місяців</span>
-                                    <span className="dark:text-white text-black">Строк користування</span>
-                            </div>
+                         <div className='flex flex-col gap-[2px] mb-3 text-white'>
+                    <div className='flex items-center justify-between w-full'>
+                           
+                    <span className="dark:text-white text-black">Строк користування</span>
+                    </div>
+                    <div className='flex items-center justify-between w-full relative p-1.5 border border-[#292929] rounded-[20px]'>
+                      <button className="absolute top-2 left-3 z-20 cursor-pointer text-2xl sliderBtn" 
+                      onClick={()=>{if(months > 3) setMonths(months - 1)}}
+                      >-</button>
+                      <button className="absolute top-2 right-3 z-20 cursor-pointer text-2xl sliderBtn" 
+                      onClick={()=>{if(months < 48) setMonths(months + 1)}}
+                      >+</button>
+                       <span className='text-white font-bold absolute top-2 z-20 left-[50%] translate-x-[-50%]'>
+                                  <AnimatedNumber value={months} /> місяців</span>
+                        <Slider
+                            defaultValue={[months]}
+                            min={3}
+                            max={48}
+                            step={1}
+                            value={[months]}
+                            className={cn("w-[100%]")}
+                            onValueChange={(val)=>setMonths(val[0])}
+                            onValueCommit={(val)=>{setMonths(val[0]); }}
+                        />
+                    </div>
+                    <div className='flex items-center justify-between w-full '>
+                            <span className='text-xs dark:text-white text-black'>3 місяців</span>
+                            <span className='text-xs dark:text-white text-black'>48 місяців</span>
+                    </div>
+                </div>
+
+
+
+
+                        <div className='flex flex-col gap-[2px] mb-3 text-white'>
+                    <div className='flex items-center justify-between w-full'>
+                            
+                            <span className="dark:text-white text-black">Авансовий платіж</span>
+                    </div>
+                    <div className='flex items-center justify-between w-full relative p-1.5 border border-[#292929] rounded-[20px]'>
+                       <button className="absolute top-2 left-3 z-20 cursor-pointer text-2xl sliderBtn" 
+                       onClick={()=>{if(avans > 10) setAvans(avans - 1)}}>-</button>
+                      <button className="absolute top-2 right-3 z-20 cursor-pointer text-2xl sliderBtn" 
+                      onClick={()=>{if(avans < 50) setAvans(avans + 1)}}>+</button>
+                       <span className='text-white font-bold absolute top-2 z-20 left-[50%] translate-x-[-50%]'>
+                                  <AnimatedNumber value={avans} /> %</span>
+                        <Slider
+                            defaultValue={[avans]}
+                            min={10}
+                            max={50}
+                            step={1}
+                            value={[avans]}
+                            className={cn("w-[100%]")}
+                            onValueChange={(val)=>setAvans(val[0])}
+                            onValueCommit={(val)=>{setAvans(val[0]); }}
+                        />
+                    </div>  
+                    <div className='flex items-center justify-between w-full'>
+                            <span className='text-xs dark:text-white text-black'>10%</span>
+                            <span className='text-xs dark:text-white text-black'>50%</span>
+                    </div>
+                </div>
+
+
+                        <div className='flex flex-col gap-[2px] text-white'>
                             <div className='flex items-center justify-between w-full'>
-                                <Slider
-                                    defaultValue={[months]}
-                                    min={3}
-                                    max={36}
-                                    step={1}
-                                    className={cn("w-[100%]")}
-                                    onValueChange={(val)=>setMonths(val[0])}
-                                />
-                           </div>
-                           <div className='flex items-center justify-between w-full '>
-                                    <span className='text-xs dark:text-white text-black'>3 місяців</span>
-                                    <span className='text-xs dark:text-white text-black'>36 місяців</span>
-                            </div>
-                        </div>
-
-
-
-
-                        <div className='flex flex-col gap-[7px] mb-3 text-white'>
-                            <div className='flex items-center justify-between w-full pb-3'>
-                                    <span className='linearText font-bold'>
-                                        <AnimatedNumber value={avans} />%
-                                        </span>
-                                    <span className="dark:text-white text-black">Гарантійний депозит</span>
-                            </div>
-                            <div className='flex items-center justify-between w-full'>
-                                <Slider
-                                    defaultValue={[avans]}
-                                    min={10}
-                                    max={50}
-                                    step={1}
-                                    className={cn("w-[100%]")}
-                                    onValueChange={(val)=>setAvans(val[0])}
-                                />
-                           </div>  
-                           <div className='flex items-center justify-between w-full'>
-                                    <span className='text-xs dark:text-white text-black'>10%</span>
-                                    <span className='text-xs dark:text-white text-black'>50%</span>
-                            </div>
-                        </div>
-
-
-                        <div className='flex flex-col gap-[7px] text-white'>
-                            <div className='flex items-center justify-between w-full pb-3'>
                                 <div className='flex items-center justify-between'>
                                     <span className="dark:text-white text-black">Викуп авто -  <AnimatedNumber value={residual} />%</span>
                                     <div>
@@ -151,16 +164,24 @@ export const CalcSlider:React.FC<IcalcSlider> = ({isActive, disableModal, openSu
 
                             {showRansom && (
                                 <>
-                                    <div className='flex items-center justify-between w-full'>
-                                    <Slider
-                                        defaultValue={[residual]}
-                                        min={10} 
-                                        max={50}
-                                        step={1}
-                                        className={cn("w-[100%]")}
-                                        onValueChange={(val)=>setResidual(val[0])}
-                                    />
-                                    </div>
+                                    <div className='flex items-center justify-between w-full relative p-1.5 border border-[#292929] rounded-[20px]'>
+                                <button className="absolute top-2 left-3 z-20 cursor-pointer text-2xl sliderBtn" 
+                                onClick={()=>{if(residual > 10) setResidual(residual - 1)}}>-</button>
+                                <button className="absolute top-2 right-3 z-20 cursor-pointer text-2xl sliderBtn" 
+                                onClick={()=>{if(residual < 50) setResidual(residual + 1)}}>+</button>
+                                <span className='text-white font-bold absolute top-2 z-20 left-[50%] translate-x-[-50%]'>
+                                  <AnimatedNumber value={residual} /> %</span>
+                            <Slider
+                                defaultValue={[residual]}
+                                min={10} 
+                                max={50}
+                                step={1}
+                                value={[residual]}
+                                className={cn("w-[100%]")}
+                                onValueChange={(val)=>setResidual(val[0])}
+                                onValueCommit={(val)=>{setResidual(val[0]); }}
+                            />
+                            </div>
                                     <div className='flex items-center justify-between w-full'>
                                         <span className='text-xs dark:text-white text-black'>10 %</span>
                                         <span className='text-xs dark:text-white text-black'>50 %</span>

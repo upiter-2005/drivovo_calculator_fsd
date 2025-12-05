@@ -18,12 +18,10 @@ export const Block1:React.FC = () => {
         }else{
             activeBlockHandler("");
         }
-        console.log("Block 1  ---  isIntersectingisIntersectingisIntersecting");
+       
       }, [isIntersecting, activeBlockHandler])
 
-console.log(`Render Section`, {
-    isIntersecting,
-  })
+
     return (
       
         <section ref={ref} className="w-full min-h-[100vh] firstBaner flex flex-col   items-center justify-center pr-[72px] pl-4 text-white">

@@ -34,7 +34,7 @@ export const Section7:React.FC = () => {
 
 
             <Image 
-                src="/assets/images/m7.jpg" 
+                src="/assets/images/m7.webp" 
                 alt='drivovo' 
                 width={1440}
                 height={820}

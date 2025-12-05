@@ -18,7 +18,7 @@ export const CalcSuccess:React.FC<IcalcSuccess> = ({isActive, disableModal}) => 
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
        useClickAway(refCalc, () => {
-        console.log("handler child");
+       
         setIsVisible(false);
         disableModal();   
     });
@@ -31,13 +31,13 @@ export const CalcSuccess:React.FC<IcalcSuccess> = ({isActive, disableModal}) => 
         if (isActive ) {
             setIsVisible(true);
         }
-        console.log(isActive);
+       
     }, [isActive])
 
     if (!mounted) return null;
     
   return <>
-      { createPortal(<div className={ (isVisible) ? "portalCommunicationModal activeModal" : "portalCommunicationModal" } ref={refCalc}>
+      { createPortal(<div className={ (isVisible) ? "portalCommunicationModalRight activeModal" : "portalCommunicationModalRight" } ref={refCalc}>
         <CloseIcon closeHandler={() => {setIsVisible(false); disableModal(); } } />
         <div className="flex flex-col justify-center items-center mb-1">
             <Image src="/assets/images/complete.png" alt='drivovo' width={54} height={54} />

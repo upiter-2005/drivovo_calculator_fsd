@@ -17,7 +17,6 @@ export const Call:React.FC<ICall> = ({ isActive, disableModal}) => {
     const [mounted, setMounted] = useState(false);
 
     useClickAway(ref, () => {
-        console.log("handler child");
         setIsVisible(false)
         disableModal()
     });
@@ -26,7 +25,7 @@ export const Call:React.FC<ICall> = ({ isActive, disableModal}) => {
         if (isActive) {
             setIsVisible(true)
         }
-        console.log(isActive);
+        
     }, [isActive])
 
     useEffect(() => {
@@ -39,7 +38,7 @@ export const Call:React.FC<ICall> = ({ isActive, disableModal}) => {
         <>
             {
                 createPortal(
-                    <div className={ isVisible ? "portalCommunicationModal activeModal" : "portalCommunicationModal" } ref={ref} >
+                    <div className={ isVisible ? "portalCommunicationModalRight activeModal" : "portalCommunicationModalRight" } ref={ref} >
                         <CloseIcon closeHandler={() => {setIsVisible(false); disableModal(); } } />
                         <div className='flex flex-col gap-[6px]'>
                             <p className={`pt-3 dark:text-white`}>Подзвонити</p>

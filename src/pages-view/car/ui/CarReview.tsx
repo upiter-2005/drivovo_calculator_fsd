@@ -21,7 +21,7 @@ export const CarReview:React.FC<IReview> = ({text, data, photo}) => {
             alt='drivovo' 
             width={1440}
             height={820}
-            className="w-full h-auto mt-6 "
+            className="w-full h-auto mt-6 md:h-[700px] object-cover"
         />
         <section className="bg-white dark:bg-black dark:text-white px-9  pr-3  max-w-[calc(100%-58px)] mt-10 overflow-hidden">
            <ReviewTop data={data} />

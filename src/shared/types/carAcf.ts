@@ -12,6 +12,7 @@ export type CarType = {
     crop_3: string
     crop_4: string
     calculator_props: CalculatorProps
+    discount: boolean
     video_youtube_id: string
     is_hit: boolean
     is_leader: boolean
@@ -27,9 +28,11 @@ export type CarType = {
     body_type: string
     fuel_consumption: string
     url: string
+    photo_leaders: string
     car_name: string
     car_brand: string
     label_status: string
+    discount_status: string
     sendpulse_form: string
     seo_title: string
     seo_description: string
@@ -44,6 +47,10 @@ export type CarType = {
     adphoto_2: string
     adphoto_3: string
     photo_for_suv_cards: string
+    vehicle_id: string
+    model_feed: string
+    exterior_color: string
+    second_avto: boolean
 }
 
   export interface CalculatorProps {

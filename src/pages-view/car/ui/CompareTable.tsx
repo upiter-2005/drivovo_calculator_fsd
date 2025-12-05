@@ -11,7 +11,7 @@ export interface IcarSingle {
 }
 
 export const CompareTable:React.FC<IcarSingle> = ({car}) => {
-  const { lizing, hiring, subscribe} = useCalcSlider(car[0].acf.calculator_props)
+  const { lizing, hiring} = useCalcSlider(car[0].acf.calculator_props)
 
      
 
@@ -30,9 +30,6 @@ export const CompareTable:React.FC<IcarSingle> = ({car}) => {
               <div>Фінансування</div>
               <div>Страхування (КАСКО + ОСАЦВ)</div>
               <div>Трекер</div>
-              <div>Пробіг 15 тис. км</div>
-              <div>Пробіг 20 тис. км</div>
-              <div>Понад ліміт</div>
               <div>ТО (технічне обслуговування) </div>
               <div>Шини + шинний сервіс</div>
               <div>Допомога при ДТП</div>
@@ -43,7 +40,7 @@ export const CompareTable:React.FC<IcarSingle> = ({car}) => {
               <div>Оплата криптовалютою</div>
               <div>Drivovo Pride</div>
               <div>Викуп</div>
-              <div>Без бюрократії (апрув за 30 хв.) </div>
+              
               <div className="text-white text-sm font-semibold">Щомісячна ціна, $ </div>
               
             </div>
@@ -56,9 +53,6 @@ export const CompareTable:React.FC<IcarSingle> = ({car}) => {
               <div><CheckImage /></div>
               <div><CheckImage /></div>
               <div><CheckImage /></div>
-              <div><CheckImage /></div>
-              <div><DisableIco /></div>
-              <div>0,5 zł за км</div>
               <div><DisableIco /></div>
               <div><DisableIco /></div>
               <div><DisableIco /></div>
@@ -68,13 +62,12 @@ export const CompareTable:React.FC<IcarSingle> = ({car}) => {
               <div><DisableIco /></div>
               <div><DisableIco /></div>
               <div><DisableIco /></div>
-              <div><CheckImage /></div>
               <div><CheckImage /></div>
               <div className="text-white text-sm font-semibold">$ {lizing.toFixed(0)} </div>
             </div>
             
             
-            <div className="pricing-grid-item pricing-grid-item-swap">
+            {/* <div className="pricing-grid-item pricing-grid-item-swap">
               <div className="pricing-grid-item-title">Оренда</div>
               <div><CheckImage /></div>
               <div><CheckImage /></div>
@@ -94,15 +87,11 @@ export const CompareTable:React.FC<IcarSingle> = ({car}) => {
               <div><DisableIco /></div>
               <div><CheckImage /></div>
               <div className="text-white text-sm font-semibold">$ {subscribe.toFixed(0)} </div>
-            </div>
+            </div> */}
           
             
             <div className="pricing-grid-item pricing-grid-item-swap">
               <div className="pricing-grid-item-title">Підписка</div>
-              <div><CheckImage /></div>
-              <div><CheckImage /></div>
-              <div><CheckImage /></div>
-              <div><CheckImage /></div>
               <div><CheckImage /></div>
               <div><CheckImage /></div>
               <div><CheckImage /></div>
@@ -129,7 +118,8 @@ export const CompareTable:React.FC<IcarSingle> = ({car}) => {
                   alt='drivovo' 
                   width={1440}
                   height={820}
-                  className="w-full h-auto mt-6 "
+                  className="w-full h-auto mt-6 md:h-[700px] object-cover"
+                  unoptimized
               />
 
                

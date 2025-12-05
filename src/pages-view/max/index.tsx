@@ -1,0 +1,1 @@
+export {MaxPage} from './ui/MaxPage'

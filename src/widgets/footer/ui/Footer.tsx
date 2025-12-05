@@ -12,7 +12,7 @@ export const Footer:React.FC = () => {
     const theme = saved || 'dark'
     setTheme(theme)
   }, [])
-    return <footer className="px-9 flex flex-col gap-4 py-10 bg-white dark:bg-black dark:text-white relative z-100">
+    return <footer className="px-9 flex flex-col gap-4 py-10 bg-white dark:bg-black dark:text-white relative z-10">
         
         <Link href="/"><Image 
             src="/assets/images/logo.svg" 

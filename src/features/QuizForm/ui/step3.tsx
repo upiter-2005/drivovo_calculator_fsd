@@ -34,7 +34,7 @@ export const Step3:React.FC<IStep1> = ({stepChange}) => {
                 <Input type='email' placeholder='Enter Your Email' className="mt-3" value={email} changeVal={(e)=>setEmail(e.target.value)}/>
                
                 {error && <p className="text-[10px] text-red-600 m-0">{error}</p>}
-                <button className="w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" onClick={() => validate(email)}>Next</button>
+                <button className="w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" onClick={() => validate(email)}>Далі</button>
             </div> 
           }
       </>

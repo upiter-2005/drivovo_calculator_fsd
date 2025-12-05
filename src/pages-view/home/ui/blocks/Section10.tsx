@@ -27,7 +27,7 @@ export const Section10:React.FC = () => {
             </section>
 
             <Image 
-                src="/assets/images/m10.jpg" 
+                src="/assets/images/m10.webp" 
                 alt='drivovo' 
                 width={1440}
                 height={820}

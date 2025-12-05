@@ -21,24 +21,20 @@ export type activeModalType = "call" | "chat" | "menu" | "calc" | "location" | "
 export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
     const [activeModal, setactiveModal] = useState<activeModalType>('');
     const pathname = usePathname()
-    console.log(pathname);
-
+  
     const buttonHandler = (val: activeModalType) => {
         setactiveModal("")
         setactiveModal(val)
-        console.log("handler parent");
+        
          if (navigator.vibrate) {
-      navigator.vibrate(200); // вибрация на 200 миллисекунд
+      navigator.vibrate(200); 
         } else {
-        console.log("Вибрация не поддерживается этим устройством/браузером.");
+        
         }
     }
 
-    console.log(activeModal);
-
     return (
         <div className={cn('fixed bottom-4 right-2 flex flex-col translate-y-0 mix-blend-difference gap-3 !z-[1000000]', className)}>
-         
               
             <button className={cn("text-white flex flex-col items-center justify-center gap-[6px]")} onClick={() => buttonHandler("call")}>
                 {activeModal === 'call' ? <Image src='/assets/images/tel-red.svg' width={20} height={20} alt='Drivovo chat ico' /> :
@@ -56,10 +52,10 @@ export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
             </button> 
 
             
-            {pathname === '/' ? 
+            {(pathname === '/' || !pathname.includes('/catalog')) ? 
             <Link href="/catalog" className="text-white flex flex-col items-center justify-center gap-[6px]" >
-                <Image src='/assets/images/calc.svg' width={20} height={20} alt='Drivovo calc ico' />
-                <span className='text-xs'>Calculate</span>
+                <Image src='/assets/images/avtopark.svg' width={22} height={20} alt='Drivovo calc ico' />
+                <span className='text-xs'>Avtopark</span>
             </Link>
             : 
             <button className="text-white flex flex-col items-center justify-center gap-[6px]" onClick={() => buttonHandler("calc")}>
@@ -89,8 +85,6 @@ export const MobMnuBtns:React.FC<IMobMnuBtns> = ({className}) => {
             <Location isActive={activeModal === "location"} disableModal={()=>setactiveModal("")} />
             <CalcSlider isActive={activeModal === "calc"} disableModal={()=>setactiveModal("")} openSuccess={ () => setactiveModal("success") } />
             <CalcSuccess isActive={activeModal === "success"} disableModal={()=>setactiveModal("")} />
-                
-
         </div>
     )
 }

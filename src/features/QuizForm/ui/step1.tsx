@@ -10,7 +10,7 @@ export const Step1:React.FC<IStep1> = ({stepChange}) => {
     const {name, setName, activeTarif} = quizStore()
     const [error, setError] = useState<string | null>(null)
     const validate = (val: string) => {
-        console.log("validate");
+       
         if(val.length < 2) {
             setError('Занадто коротко, введіть більше символів!');
             return false;
@@ -37,7 +37,7 @@ export const Step1:React.FC<IStep1> = ({stepChange}) => {
                     changeVal={(e)=>setName(e.target.value)}
                 />
                 {error && <p className="text-[10px] text-red-600 m-0">{error}</p>}
-                <button className="w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" onClick={() => validate(name)}>Next</button>
+                <button className="w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" onClick={() => validate(name)}>Далі</button>
             </div> 
           }
       </>

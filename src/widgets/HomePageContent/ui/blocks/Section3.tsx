@@ -15,11 +15,12 @@ export const Section3:React.FC = () => {
     }, [autoVisible2]);
 
     return (
-        <div ref={section2Ref}>
-            <section id="calculator" className="bg-white dark:bg-black dark:text-white px-9 py-14 pr-3  max-w-[calc(100%-58px)]">
-                <h2 className="text-[30px] leading-[30px] font-[600] mb-12">Розрахуйте вартість онлайн — без дзвінків і зайвих питань.</h2>
+        <div ref={section2Ref} className="md:flex md:flex-row overflow-hidden">
+            <section id="calculator" className="bg-white dark:bg-black dark:text-white px-9 py-14 pr-3  max-w-[calc(100%-58px)] md:w-[50%]  md:min-w-[50%] relative">
+                
 
-                <div className="text-[15px] dark:text-[#c2c2c2] text-[#494949] leading-[18px] flex flex-col gap-4 ">
+                <div className="text-[15px] dark:text-[#c2c2c2] text-[#494949] leading-[18px] flex flex-col gap-4 md:max-w-[536px] md:absolute md:right-10">
+                    <h2 className="text-[30px] leading-[30px] font-[600] mb-12 md:max-w-[536px] ">Розрахуйте вартість онлайн — без дзвінків і зайвих питань.</h2>
                     <p>Наш динамічний калькулятор — це <span className="dark:text-white text-black font-[600]">інструмент для прийняття зважених рішень.</span>  Керуйте параметрами — терміном, депозитом та викупом — і <span className="dark:text-white text-black font-[600]">миттєво отримуйте детальний розрахунок,</span> не очікуючи на дзвінок менеджера.</p>
                     <p>Зацікавив офер? Залиште заявку та <span className="dark:text-white text-black font-[600]">отримайте на e-mail повний пакет документів</span> для аналізу:</p>
                     <ul className="list-disc text-[15px]">
@@ -38,10 +39,10 @@ export const Section3:React.FC = () => {
                 alt='drivovo' 
                 width={1440}
                 height={820}
-                className="w-full h-auto mt-[17px]"
+                className="w-full h-auto mt-[17px] md:mt-0 md:h-[550px] md:object-cover"
             />
 
-            <PortalComponent visible={visible2} onClose={() => setVisible1(false)}>
+            <PortalComponent visible={visible2} onClose={() => setVisible1(false)} noBgc={true}>
                   <HomeIntersection1 />
             </PortalComponent>
           

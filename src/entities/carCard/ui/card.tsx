@@ -1,21 +1,36 @@
 'use client'
+
 import { CarType } from '@/shared/types/carAcf';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 interface ICar  {
     car : CarType
     sliderSlot?: React.ReactNode
     secondThumb?: boolean
+    leaders?: boolean
+    hits?: boolean
   }
 
-export const Card:React.FC<ICar> = ({car, sliderSlot, secondThumb = false}) => {
-     console.log(car);
+export const Card:React.FC<ICar> = ({car, sliderSlot, secondThumb = false, leaders= false, hits = false}) => {
+   
+   
+
+    const [foto, setFoto] = useState<string>('')
+    
+       useEffect(()=>{
+        setFoto(car?.preview_photo)
+        if(leaders) setFoto(car?.photo_leaders)
+        if(secondThumb) setFoto(car?.crop_1)
+        if(hits) setFoto( car?.crop_2)
+        }, [car,secondThumb, hits, leaders])
+
     return (
-        <div className='min-w-[120px] w-[43%] overflow-hidden'>
+        <div className='min-w-[120px] w-[43%] md:w-[260px] overflow-hidden'>
             <Link href={`/car/${car.url}`} className='block w-full relative aspect-[5/7] '>
             <Image 
-                src={secondThumb ? car?.crop_1 : car?.preview_photo} 
+                src={foto ? foto : car?.preview_photo} 
                 alt="drivovo"
                 //sizes="160px"
                 fill

@@ -62,6 +62,8 @@ export default function RootLayout({
             })();
           `}
         </Script>
+       
+
          <Script
           id="gtm-head"
           strategy="afterInteractive"
@@ -75,13 +77,13 @@ export default function RootLayout({
             `,
           }}
         />
-         <Script
+         {/* <Script
           id="hs-script"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/20308897.js"></script>`,
           }}
-        />
+        /> */}
          <Script
           id="hj-script"
           strategy="afterInteractive"
@@ -114,9 +116,10 @@ export default function RootLayout({
               `,
           }}
         />
+       
       </head>
 
-      <body className={`${Gilroy.className}  antialiased dark:bg-[#030303]`} >
+      <body className={`${Gilroy.className}  antialiased dark:bg-[#030303] overflow-x-hidden w-full`} >
        
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TB57WSB3"
         height="0" width="0"  style={{ display: 'none', visibility: 'hidden' }}></iframe></noscript>
@@ -132,6 +135,8 @@ export default function RootLayout({
             <FooterWidget />
           <MobMnuBtns />
           <Coockie />
+
+          
       </body>
     </html>
   );

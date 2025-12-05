@@ -20,7 +20,7 @@ export const FirstWindow:React.FC = () => {
         }else{
             setIsVisible(false)
         }
-        console.log(activeBlock);
+       
     }, [activeBlock])
 
     

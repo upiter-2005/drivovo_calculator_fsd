@@ -19,9 +19,9 @@ export const useCalcStore = create<ICalcStore>()(
   persist(
     (set) => (
       {
-        avans: 10,
+        avans: 25,
         months: 36,
-        residual: 25,
+        residual: 35,
         moved: false,
         isCalcOpen: false,
         setAvans: (val) => {

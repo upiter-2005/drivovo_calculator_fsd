@@ -5,7 +5,7 @@ import { notFound } from "next/navigation"
 import { Suspense } from "react"
 
 async function getCarsByBrand(type: string) {
-  const res = await fetchData<CarData[]>(`https://drivovo.ua/wp-json/custom/v1/typesCar?body_type=${type}`, {
+  const res = await fetchData<CarData[]>(`https://drivovo.eu/wp-json/custom/v1/typesCar?body_type=${type}`, {
     cache: "no-store", // отключаем кеш, если надо получать всегда актуальные данные
   })
   if (!res.data) {
@@ -23,7 +23,7 @@ export async function TypePage({
 }) {
   const { type } = await params
   const cars = await getCarsByBrand(type)
-  console.log(type);
+
 
   if (!cars.length) return notFound()
 
@@ -31,7 +31,7 @@ export async function TypePage({
       <>
         <h1 className="text-[32px] mb-6 pl-4">Сar park</h1>
         <Suspense fallback={<p className="text-white">Loading...</p>} >
-            <CarWidget cars={cars} />
+            <CarWidget  />
         </Suspense>
     </> 
   )

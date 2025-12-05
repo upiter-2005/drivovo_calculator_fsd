@@ -3,40 +3,40 @@ import React, { useEffect, useState } from "react";
 
 interface AnimatedNumberProps {
   value: number;
-  duration?: number; // в миллисекундах
-  format?: boolean; // в миллисекундах
+  duration?: number; 
+  format?: boolean; 
 }
 
 export const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
   value,
   duration = 500,
-  format = false
+  format = true
 }) => {
-  const [displayedValue, setDisplayedValue] = useState(value);
+  const [displayedValue, setDisplayedValue] = useState<number | string>(value);
   
   useEffect(() => {
+    setDisplayedValue(value.toFixed(0))
+   
+    // const startValue = displayedValue;
+    // const diff = value - startValue;
+    // let startTime: number | null = null;
 
-    const startValue = displayedValue;
-    const diff = value - startValue;
-    let startTime: number | null = null;
+    // const animate = (timestamp: number) => {
+    //   if (startTime === null) startTime = timestamp;
+    //   const progress = Math.min((timestamp - startTime) / duration, 1);
+    //   const currentValue = Math.round(startValue + diff * progress);
+    //   if(currentValue !== 0) setDisplayedValue(currentValue);
+    //   if (progress < 1) {
+    //     requestAnimationFrame(animate);
+    //   }
+    
 
-    const animate = (timestamp: number) => {
-      if (startTime === null) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const currentValue = Math.round(startValue + diff * progress);
-      if(currentValue !== 0) setDisplayedValue(currentValue);
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-
-    requestAnimationFrame(animate);
+    // requestAnimationFrame(animate);
   }, [value, duration]);
-
   if(format){
     return <span>{insertSpace(displayedValue)}</span>;
   }else{
-    return <span>{displayedValue}</span>;
+    return <span>{insertSpace(displayedValue)}</span>;
   }
   
 };

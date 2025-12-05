@@ -20,24 +20,17 @@ export const Section1:React.FC = () => {
 
     return (
         <div ref={section1Ref}>
-            <div  id="advantages" className="bg-white dark:bg-black dark:text-white px-9 py-14 pr-3  max-w-[calc(100%-58px)]">
-                <h2 className="text-[30px] leading-[30px] font-[600] mb-12">Чому наша модель ефективніша за традиційні</h2>
-                <div className="text-[15px] dark:text-[#c2c2c2] text-[#494949] leading-[18px] flex flex-col gap-4 ">
+            <div  id="advantages" className="bg-white dark:bg-black dark:text-white px-9 py-14 pr-3  max-w-[calc(100%-58px)] md:max-w-[1200px] md:m-auto md:px-0">
+                <h2 className="text-[30px] leading-[30px] font-[600] mb-12 md:text-center md:max-w-[592px] md:text-[44px]  md:mx-auto md:leading-[56px]">Як це працює</h2>
+                <div className="text-[15px] dark:text-[#c2c2c2] text-[#494949] leading-[18px] flex flex-col gap-4 md:flex md:flex-row md:gap-8">
                      
- 
+                    <p className="md:leading-7 md:w-[277px]"><span className="dark:text-white text-black font-[600] md:block md:text-2xl md:mb-2">Залишаєте заявку.</span>  Оберіть будь-яке авто з нашого парку або замовте бажану модель. Ваш персональний менеджер зв&apos;яжеться з вами протягом 5 хвилин.</p>
 
+                    <p className="md:leading-7 md:w-[277px]"><span className="dark:text-white text-black font-[600] md:block md:text-2xl md:mb-2">Отримуєте пропозицію.</span> Ви отримуєте прозорий розрахунок за двома тарифами — Smart Leasing та Drivovo Subscription — і обираєте найзручніший.</p>
 
+                    <p className="md:leading-7 md:w-[277px]"><span className="dark:text-white text-black font-[600] md:block md:text-2xl md:mb-2">Укладаєте договір.</span> Підписуємо всі документи онлайн за допомогою цифрового підпису. Жодної бюрократії, прихованих комісій та поїздок до офісу.</p>
 
-
-                    
-
-                    <p><span className="dark:text-white text-black font-[600]">Жодних банківських перевірок.</span>  На відміну від лізингу чи кредиту, ми не вимагаємо довідок про доходи і не влаштовуємо складних перевірок вашої фінансової історії.</p>
-
-                    <p><span className="dark:text-white text-black font-[600]">Єдина екосистема.</span> Один платіж покриває страхування, ТО та шинний сервіс — усе під нашим контролем, на відміну від самостійного менеджменту при покупці.</p>
-
-                    <p><span className="dark:text-white text-black font-[600]">Консьєрж-сервіс.</span> За вами закріплений персональний менеджер, готовий вирішити будь-яке питання 24/7 — від планового ТО до допомоги при ДТП.</p>
-
-                    <p><span className="dark:text-white text-black font-[600]">Тількі нові автомобілі.</span> На відміну від традиційної оренди чи каршерінгу, автомобіль знаходиться у вашому повному розпорядженні. Це не спільний актив, а ваш особистий простір на колесах.</p>
+                    <p className="md:leading-7 md:w-[277px]"><span className="dark:text-white text-black font-[600] md:block md:text-2xl md:mb-2">Забираєте авто.</span> Ваш автомобіль чекає на вас у домовлений час. Вже зареєстрований, застрахований та повністю готовий до будь-яких викликів.</p>
 
                     
                 </div>
@@ -48,9 +41,9 @@ export const Section1:React.FC = () => {
                 alt='drivovo' 
                 width={1440}
                 height={820}
-                className="w-full h-auto mt-[17px]"
+                className="w-full h-auto mt-[17px] md:h-[770px] md:object-cover"
             />
-            <PortalComponent visible={visible1} onClose={() => setVisible1(false)}>
+            <PortalComponent visible={visible1} onClose={() => setVisible1(false)} noBgc={true}>
                 <CalcCar />
             </PortalComponent>
           

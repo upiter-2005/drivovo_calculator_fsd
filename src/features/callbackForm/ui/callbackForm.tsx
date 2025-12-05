@@ -16,7 +16,7 @@ export const CallbackForm:React.FC = ({}) => {
      e.preventDefault()
     startTransition(async () => {
       const result = await callRingostat(phone)
-      console.log(result);
+      
       setSuccess(result?.success || false)
     })
   }

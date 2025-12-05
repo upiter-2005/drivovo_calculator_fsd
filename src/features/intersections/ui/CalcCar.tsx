@@ -1,24 +1,25 @@
 'use client'
 import {  useState } from "react";
-import Image from "next/image";
-import { CarData } from "@/shared/types/carAcf";
-import useSWR from 'swr'
+// import Image from "next/image";
+// import { CarData } from "@/shared/types/carAcf";
+//import useSWR from 'swr'
 import { useCalcStore } from "@/features/calcSlider/actions/calcStore";
 import { useRouter } from 'next/navigation'
-const fetcher = (url: string) => fetch(url).then(res => {
-  //if (!res.ok) throw new Error('Fetch failed')
-  return res.json()
-})
+import Link from "next/link";
+// const fetcher = (url: string) => fetch(url).then(res => {
+//   //if (!res.ok) throw new Error('Fetch failed')
+//   return res.json()
+// })
 
 export const CalcCar:React.FC = () => {
     const {setIsCalcOpen} = useCalcStore();
-    const [selectedCar, setSelectedCar] = useState<string>('');
-    const [carUrl, setCarUrl] = useState<string>('');
-    const [openCars, setOpenCars] = useState<boolean>(false);
+    const [selectedCar] = useState<string>('');
+    const [carUrl] = useState<string>('');
+    //const [openCars, setOpenCars] = useState<boolean>(false);
 const router = useRouter()
 
  
-    const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/nextcar?_fields=acf&acf_format=standard&per_page=70&order=asc`, fetcher)
+    // const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/nextcar?_fields=acf&acf_format=standard&per_page=70&order=asc`, fetcher)
 
     
     const calcRedirect = (url: string): void => {
@@ -31,7 +32,7 @@ const router = useRouter()
         <>
           {
             <div>
-              <div className="flex justify-between items-center mb-1">
+              {/* <div className="flex justify-between items-center mb-1">
                   <div>Оберіть авто</div>
               </div>
               <p className="text-xs font-light">Миттєвий розрахунок для вашого авто</p>
@@ -52,13 +53,13 @@ const router = useRouter()
                       {selectedCar ? selectedCar : 'Обрати авто'} <Image src='/assets/images/bottom_arr.svg' width={14} height={14} alt='drivovo'/> 
                   </button>
                     <div className="text-xs linearText">Калькулятор в реальному часі</div>
-              </div>
+              </div> */}
               
               
               {selectedCar ? 
               <button onClick={() => calcRedirect(`/car/${carUrl}`)} className="w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" >Порахувати вартість</button>
             :
-            <button className="w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" >Порахувати вартість</button>}
+            <Link href="/catalog" className="w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] mt-3" >Розрахувати Smart Leasing</Link>}
               
           </div>
                   

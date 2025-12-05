@@ -15,7 +15,7 @@ export const Menu:React.FC<ICall> = ({ isActive, disableModal}) => {
     const ref = useRef(null);
     const [mounted, setMounted] = useState(false);
     useClickAway(ref, () => {
-        console.log("handler child");
+       
         setIsVisible(false)
         disableModal()
     });
@@ -24,7 +24,7 @@ export const Menu:React.FC<ICall> = ({ isActive, disableModal}) => {
         if (isActive) {
             setIsVisible(true)
         }
-        console.log(isActive);
+        
     }, [isActive])
 
      useEffect(() => {
@@ -36,7 +36,7 @@ export const Menu:React.FC<ICall> = ({ isActive, disableModal}) => {
     return (
         <>
             {createPortal(
-                <div ref={ref} className={ isVisible ? "portalCommunicationModal activeModal" : "portalCommunicationModal" }>
+                <div ref={ref} className={ isVisible ? "portalCommunicationModalRight activeModal" : "portalCommunicationModalRight" }>
                     <CloseIcon closeHandler={() => {setIsVisible(false); disableModal(); } } />
                     <div className='text-white flex flex-col gap-[2px]'>
                      <MnuButton text="Додому" redirectTo="/" closeMnu={() => setIsVisible(false)} />

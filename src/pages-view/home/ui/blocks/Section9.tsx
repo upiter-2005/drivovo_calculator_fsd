@@ -16,7 +16,7 @@ export const Section9:React.FC = () => {
 
 
             <Image 
-                src="/assets/images/m9.jpg" 
+                src="/assets/images/m_9.jpg" 
                 alt='drivovo' 
                 width={1440}
                 height={820}

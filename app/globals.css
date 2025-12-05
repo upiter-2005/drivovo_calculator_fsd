@@ -134,7 +134,20 @@
   background-position: center;
   background-size: cover;
   background-image: url(./../public/assets/images/fon1.jpg);
+  position: relative;
 }
+.firstBaner::after{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.7);
+}
+
+
 .linearText{
     background: linear-gradient(to right, #fe329c 0%, #ff420a 40%);
     -webkit-background-clip: text;
@@ -147,6 +160,20 @@
 /* styles.css */
 .light .communicationModal{
   background-color: #f0efef;
+}
+.portalCommunicationModalRight {
+  width: calc(100% - 81px);
+  margin-left: 16px;
+  padding: 12px;
+  background: #292929;
+  border-radius: 12px;
+  transition: all 0.3s;
+	/* animation: animModal 0.5s ease-in-out; */
+  position: fixed;
+  bottom: 16px;
+  left: 0;
+  transform: translateY(200%);
+  z-index: 9999!important;
 }
 .portalCommunicationModal {
   width: calc(100% - 81px);
@@ -182,6 +209,54 @@
   left: 0;
   transform: translateY(200%);
   
+}
+@media(min-width: 768px){
+  .communicationModal, .portalCommunicationModal{
+    width: 400px;
+    left: 50%;
+    margin-left: -200px;
+  }
+   .portalCommunicationModalRight{
+    width: 400px;
+    right: 65px;
+    left: auto;
+  }
+}
+.catalogBtn{
+  background: rgba(82, 80, 80, .9);
+  padding: 12px 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  border-radius: 67px;
+  font-size: 24px;
+  color: #fff;
+  transform: translateX(-50%);
+  transition: all .3s ease;
+}
+.catalogBtn:hover{
+  opacity: 0.8;
+}
+.catalogBtn span{
+  display: flex;
+  width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content:  center;
+}
+@media(max-height: 768px){
+  .catalogBtn{
+    display: none;
+  }
+  .catalogBtn span{
+    width: 30px;
+    height: 30px;
+  }
 }
 .activeModal {
   transform: translateY(0)!important;
@@ -277,7 +352,8 @@ td:first-child{
 }
 
 .swiper-pagination-bullet-active {
-  background-color: #fff!important; /* активная точка (например, красная) */
+  background-color: #ff4203!important; /* активная точка (например, красная) */
+  border: 1px solid  #ff4203!important;
 }
 
 /* GlowingText.css */
@@ -356,12 +432,17 @@ td:first-child{
 .dark .pricing-grid-item div, .dark .pricing-grid-left div{
 	height: 34px;
 	border-bottom: 1px solid #292929;
-	font-size: 12px;
+	font-size: 14px;
+  white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content:  flex-start;
   padding-left: 8px;
   color: #d7d7d7;
+}
+.sliderBtn{
+  padding: 0 16px;
+  top: 5px!important;
 }
 .pricing-grid-item div, .pricing-grid-left div{
 	height: 34px;
@@ -392,6 +473,8 @@ td:first-child{
 	justify-content: center;
 	text-align: center;
   color: #fff;
+  width: 100%;
+  margin: 0;
 }
 .pricing-grid-item div{
 	display: flex;
@@ -404,8 +487,13 @@ td:first-child{
    color: #9b9b9b;
 }
 @media(max-width: 992px){
-	
-	
+	.dark .pricing-grid-item div, .dark .pricing-grid-left div{
+    font-size: 12px;
+  }
+	.sliderBtn{
+    padding: 0 16px;
+    top: 5px!important;
+  }
 	.pricing-grid-item{
 		margin-right: .5px;
 	}
@@ -434,4 +522,53 @@ td:first-child{
 		border-right: 1px solid #292929;
 	}
 	
+}
+.max-btns-btn {
+    background-color: #ff5d04;
+    color: #fff;
+    border: 1px solid #ff5d04;
+    padding: 9px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-radius: 3px;
+    margin-bottom: 8px;
+}
+
+
+/* globals.css (или styles.css) */
+@layer components {
+  .scrollbar-x {
+    /* обязательные утилиты Tailwind для контейнера:
+       оставьте overflow-x-auto / no-scroll-y в разметке */
+  }
+
+  /* WebKit (Chrome, Edge, Safari) */
+  .scrollbar-x::-webkit-scrollbar {
+    height: 10px; /* высота горизонтального скролла */
+  }
+  .scrollbar-x::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.06);
+    border-radius: 9999px;
+  }
+  .scrollbar-x::-webkit-scrollbar-thumb {
+    background: ff420a; /* зеленый thumb (can change) */
+    border-radius: 9999px;
+    border: 2px solid rgba(255,255,255,0.0); /* gap effect */
+    min-width: 40px; /* минимальная ширина ползунка */
+  }
+  .scrollbar-x::-webkit-scrollbar-thumb:hover {
+    background: ff420a;
+  }
+
+  /* Firefox */
+  .scrollbar-x {
+    scrollbar-width: thin; /* auto | thin | none */
+    scrollbar-color: #ff420a rgba(0,0,0,0.06);
+  }
+
+  /* Optional: скрыть вертикальный скролл если появляется */
+  .scrollbar-x {
+    overflow-y: hidden;
+  }
 }
