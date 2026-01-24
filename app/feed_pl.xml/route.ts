@@ -38,7 +38,7 @@ export async function GET() {
             const d19 = (3700 / 36) * nacenka_servises
             const d20 = (10880 / 36) * nacenka_servises
             const d21 = (900 / 12) * nacenka_servises
-            const d22 = d16 + d17 + d18 + d19 + d20 + d21  // optional
+            const d22 = d16 + d17 + d18 + d19 + d20 + d21  
             let result = 0
             if(tarif === 'subscribe'){
                 result = d14 + d22

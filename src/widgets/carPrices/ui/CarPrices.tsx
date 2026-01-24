@@ -28,9 +28,7 @@ export const CarPrices:React.FC<IcarSingle> = ({car}) => {
            <div className="md:flex max-w-[1200px] w-full m-auto md:my-[70px] flex-wrap">
               <p className="text-[16px] leading-[22px] font-[500] py-3 md:text-4xl w-full px-9 md:pb-10">Обирай тариф: </p>
               <section id="tarifSell"  className="bg-white dark:bg-black dark:text-white px-9  pr-3  max-w-[calc(100%-58px)] md:w-[50%] flex flex-col gap-5" >
-                
               
-
                 <div className={`dark:text-[#b9b9b9] text-[#494949] relative border-1 border-[#747474] rounded-[10px] p-[11px] ${activeTarif === 'Лізінг' && 'border-[#de324b]  cursor-pointer'}`}
                   onClick={() => {setActiveTarif('Лізінг'); setVisible1(true)}}
                 >
@@ -49,8 +47,7 @@ export const CarPrices:React.FC<IcarSingle> = ({car}) => {
                       <li className="li-icon pb-2">Фінансування</li> 
                       <li className="li-icon pb-2">Повне страхування</li>
                       <li className="li-icon pb-2">Викуп авто</li>
-                      <li className="li-icon pb-2">Викуп авто</li>
-                      <li className="li-icon pb-2">Викуп авто</li>
+                      
                     </ul>
                 </div>
 
@@ -70,8 +67,7 @@ export const CarPrices:React.FC<IcarSingle> = ({car}) => {
                       <li className="li-icon pb-2">Консьєрж-сервіс </li>
                       <li className="li-icon pb-2">Оплата крипта/кеш</li>
                       <li className="li-icon pb-2">Право, не обовʼязок викупу</li>
-                      <li className="li-icon pb-2">Право, не обовʼязок викупу</li>
-                      <li className="li-icon pb-2">Право, не обовʼязок викупу</li>
+                      
                     </ul>
                 </div>
 

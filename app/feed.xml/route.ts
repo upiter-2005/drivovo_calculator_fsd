@@ -17,11 +17,11 @@ export async function GET() {
   }
 
   const calculatePerMonthWithProps = (carData: CalculatorProps, monthes: number, avans: number, vykup: number, tarif: string = "lizing") => {
-        const D6 = 0; // скидка авто из формулы
-        const D5 = carData.car_price_ex_showroom as unknown as number // WP var
+        const D6 = 0; 
+        const D5 = carData.car_price_ex_showroom as unknown as number 
         const D9 = 1.5
-        const D8 = (tarif === 'subscribe') ?  10 : avans  // var f
-        const ransom = (tarif === 'subscribe') ?  50 : vykup  //var f
+        const D8 = (tarif === 'subscribe') ?  10 : avans 
+        const ransom = (tarif === 'subscribe') ?  50 : vykup 
         const nacenkaE3 = 1.15 
 
         const D7 = D5*((100-D6) / 100)  
@@ -29,9 +29,6 @@ export async function GET() {
         const D25 = D7 * (ransom / 100)
         const D11 = (tarif === 'subscribe') ? (D7*D9-D10-D25) / 36 : (D7*D9-D10-D25) / monthes
 
-        
-
-        // additionals
         const D12 = D7 * 0.05 / 12
         const D13 = (tarif === 'subscribe') ? (D7/6*5*0.05)/36 :  D7/6*5*0.05/monthes
         const D15 = (tarif === 'subscribe') ? 185/36  : 185/monthes 
@@ -46,14 +43,11 @@ export async function GET() {
 
         let result: number = 0
         if(tarif === "lizing"){
-            result =( D11 + (D12+ D13 + D15 + C16) ) 
+          result =( D11 + (D12+ D13 + D15 + C16) ) 
         }else{
-             result =( D11 + (D12+ D13 + D15 + C16 + C17 + C18 + C19 + C20 + C21) )
+          result =( D11 + (D12+ D13 + D15 + C16 + C17 + C18 + C19 + C20 + C21) )
         }
-        
-      
-            //return insertSpace(result.toFixed(0))
-            return result.toFixed(0)
+          return result.toFixed(0)
         }
 
   try {

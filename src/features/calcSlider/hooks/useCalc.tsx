@@ -56,11 +56,11 @@ export const useCalcSlider = (carDataObj: IUseCalc) => {
     const calculatePerMonthWithProps = (carData: CalculatorProps, monthes: number, avans: number, vykup: number, tarif: string = "lizing") => {
 
         if(location === 'nextcar'){
-            const D6 = 0; // скидка авто из формулы
-            const D5 = carData.car_price_ex_showroom as unknown as number // WP var
+            const D6 = 0;
+            const D5 = carData.car_price_ex_showroom as unknown as number 
             const D9 = 1.5
-            const D8 = (tarif === 'subscribe') ?  20 : avans  // var f
-            const ransom = (tarif === 'subscribe') ?  30 : vykup  //var f
+            const D8 = (tarif === 'subscribe') ?  20 : avans  
+            const ransom = (tarif === 'subscribe') ?  30 : vykup  
             const nacenkaE3 = 1.15 
 
             const D7 = D5*((100-D6) / 100)  
@@ -68,7 +68,6 @@ export const useCalcSlider = (carDataObj: IUseCalc) => {
             const D25 = D7 * (ransom / 100)
             const D11 = (tarif === 'subscribe') ? (D7*D9-D10-D25) / 36 : (D7*D9-D10-D25) / monthes
 
-            // additionals
             const D12 = D7 * 0.05 / 12
             const D13 = (tarif === 'subscribe') ? (D7/6*5*0.05)/36 :  D7/6*5*0.05/monthes
             const D15 = (tarif === 'subscribe') ? 185/36  : 185/monthes 
@@ -87,12 +86,11 @@ export const useCalcSlider = (carDataObj: IUseCalc) => {
             }else{
                 result =( D11 + (D12+ D13 + D15 + C16 + C17 + C18 + C19 + C20 + C21) )
             }
-                //return insertSpace(result.toFixed(0))
             return result
         }else{
 
-            const d6 = 0; // скидка авто из формулы
-            const d5 = carData.car_price_ex_showroom as unknown as number // WP var
+            const d6 = 0; 
+            const d5 = carData.car_price_ex_showroom as unknown as number 
             const nacenka_lizing_pidpyska = (tarif === 'subscribe') ? 1.3 : 1.2
            
         
@@ -112,7 +110,7 @@ export const useCalcSlider = (carDataObj: IUseCalc) => {
             const d19 = (3700 / 36) * nacenka_servises
             const d20 = (10880 / 36) * nacenka_servises
             const d21 = (900 / 12) * nacenka_servises
-            const d22 = d16 + d17 + d18 + d19 + d20 + d21  // optional
+            const d22 = d16 + d17 + d18 + d19 + d20 + d21  
             let result = 0
             if(tarif === 'subscribe'){
                 result = d14 + d22

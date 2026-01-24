@@ -37,7 +37,7 @@ export const CalcSliderOnPage:React.FC<ICOnPage> = ({price}) => {
                     </div>
                     <div className='flex items-center justify-between w-full relative p-1.5 border border-[#292929] rounded-[20px]'>
                       <button className="absolute top-2 left-3 z-20 cursor-pointer text-2xl sliderBtn" 
-                      onClick={()=>{if(months > 3) setMonths(months - 1)}}
+                      onClick={()=>{if(months > 24) setMonths(months - 1)}}
                       >-</button>
                       <button className="absolute top-2 right-3 z-20 cursor-pointer text-2xl sliderBtn" 
                       onClick={()=>{if(months < 48) setMonths(months + 1)}}
@@ -46,7 +46,7 @@ export const CalcSliderOnPage:React.FC<ICOnPage> = ({price}) => {
                                  {months} місяців</span>
                         <Slider
                             defaultValue={[months]}
-                            min={3}
+                            min={24}
                             max={48}
                             step={1}
                             value={[months]}
@@ -56,7 +56,7 @@ export const CalcSliderOnPage:React.FC<ICOnPage> = ({price}) => {
                         />
                     </div>
                     <div className='flex items-center justify-between w-full '>
-                            <span className='text-xs dark:text-white text-black'>3 місяців</span>
+                            <span className='text-xs dark:text-white text-black'>24 місяців</span>
                             <span className='text-xs dark:text-white text-black'>48 місяців</span>
                     </div>
                 </div>
@@ -69,14 +69,14 @@ export const CalcSliderOnPage:React.FC<ICOnPage> = ({price}) => {
                     </div>
                     <div className='flex items-center justify-between w-full relative p-1.5 border border-[#292929] rounded-[20px]'>
                        <button className="absolute top-2 left-3 z-20 cursor-pointer text-2xl sliderBtn" 
-                       onClick={()=>{if(avans > 10) setAvans(avans - 1)}}>-</button>
+                       onClick={()=>{if(avans > 15) setAvans(avans - 1)}}>-</button>
                       <button className="absolute top-2 right-3 z-20 cursor-pointer text-2xl sliderBtn" 
                       onClick={()=>{if(avans < 50) setAvans(avans + 1)}}>+</button>
                        <span className='text-white font-bold absolute top-2 z-20 left-[50%] translate-x-[-50%]'>
                                   {avans} %</span>
                         <Slider
                             defaultValue={[avans]}
-                            min={10}
+                            min={15}
                             max={50}
                             step={1}
                             value={[avans]}
@@ -86,7 +86,7 @@ export const CalcSliderOnPage:React.FC<ICOnPage> = ({price}) => {
                         />
                     </div>  
                     <div className='flex items-center justify-between w-full'>
-                            <span className='text-xs dark:text-white text-black'>10%</span>
+                            <span className='text-xs dark:text-white text-black'>15%</span>
                             <span className='text-xs dark:text-white text-black'>50%</span>
                     </div>
                 </div>
@@ -120,15 +120,15 @@ export const CalcSliderOnPage:React.FC<ICOnPage> = ({price}) => {
                         <>
                             <div className='flex items-center justify-between w-full relative p-1.5 border border-[#292929] rounded-[20px]'>
                                 <button className="absolute top-2 left-3 z-20 cursor-pointer text-2xl sliderBtn" 
-                                onClick={()=>{if(residual > 10) setResidual(residual - 1)}}>-</button>
+                                onClick={()=>{if(residual > 25) setResidual(residual - 1)}}>-</button>
                                 <button className="absolute top-2 right-3 z-20 cursor-pointer text-2xl sliderBtn" 
-                                onClick={()=>{if(residual < 50) setResidual(residual + 1)}}>+</button>
+                                onClick={()=>{if(residual < 40) setResidual(residual + 1)}}>+</button>
                                 <span className='text-white font-bold absolute top-2 z-20 left-[50%] translate-x-[-50%]'>
                                  {residual} %</span>
                             <Slider
                                 defaultValue={[residual]}
-                                min={10} 
-                                max={50}
+                                min={25} 
+                                max={40}
                                 step={1}
                                 value={[residual]}
                                 className={cn("w-[100%]")}
@@ -137,8 +137,8 @@ export const CalcSliderOnPage:React.FC<ICOnPage> = ({price}) => {
                             />
                             </div>
                             <div className='flex items-center justify-between w-full'>
-                                <span className='text-xs dark:text-white text-black'>10 %</span>
-                                <span className='text-xs dark:text-white text-black'>50 %</span>
+                                <span className='text-xs dark:text-white text-black'>25 %</span>
+                                <span className='text-xs dark:text-white text-black'>40 %</span>
                             </div>
                     </>
                     )}

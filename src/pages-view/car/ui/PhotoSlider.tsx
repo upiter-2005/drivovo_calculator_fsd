@@ -11,7 +11,7 @@ import "swiper/css"
 import "swiper/css/navigation"
 import 'swiper/css/pagination'
 //import { Navigation } from "swiper/modules"
-import { Pagination } from 'swiper/modules'
+import { Navigation, Pagination } from 'swiper/modules'
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 // import { useCalcSlider } from "@/features/calcSlider/hooks/useCalc";
@@ -35,18 +35,15 @@ interface CarData {
 }
 
 export const PhotoSlider:React.FC<CarData> = ({id}) => {
-   const [visible2, setVisible1] = useState(false);
-  //  const [topPrice, setTopPrice] = useState<number>(0);
-   const { setActiveTarif} = quizStore()
-  // const { lizing} = useCalcSlider(data.calculator_props)
+  const [visible2, setVisible1] = useState(false);
+  const { setActiveTarif} = quizStore()
   const location = useLocationStore(state => state.location)
 
-    const [sliderZ, setSliderZ] = useState<string>("z-0")
- const secondBlockRef = useRef<HTMLDivElement | null>(null)
+  const [sliderZ, setSliderZ] = useState<string>("z-0")
+  const secondBlockRef = useRef<HTMLDivElement | null>(null)
  
-console.log(location);
-  useEffect(() => {
 
+  useEffect(() => {
     window.scrollTo({
       top: 470,
       behavior: 'smooth', 
@@ -66,18 +63,18 @@ console.log(location);
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/${location}?slug=${id}&_fields=acf&acf_format=standard`, fetcher, {
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/${location}?slug=${id}&_fields=acf&acf_format=standard`, fetcher, {
         dedupingInterval: 0,
         revalidateIfStale: false,
         revalidateOnFocus: false,
-    })
-      const props = useMemo(() => data?.[0]?.acf?.calculator_props ?? {}, [data])
-      const { lizing } = useCalcSlider(props ?? {})
+  })
+  const props = useMemo(() => data?.[0]?.acf?.calculator_props ?? {}, [data])
+  const { lizing } = useCalcSlider(props ?? {})
       
 
    
   if (!data || !data[0]?.acf) return <p>Loading...</p>
-const fotos = [
+  const fotos = [
       data[0]?.acf?.preview_photo,
       data[0]?.acf?.crop_1,
       data[0]?.acf?.crop_2,
@@ -85,17 +82,26 @@ const fotos = [
       data[0]?.acf?.crop_4
     ].filter(Boolean)
     if (!fotos.length) return <p>No photos</p>
-  // if(!gallery.length) return <p>Not found photo</p>
   if (!data || !data[0]?.acf) return <p>Loading...</p>
 
     return (
       <div className="md:flex w-full md:flex-row ">
       <section className={`sticky md:relative md:w-[50%] top-0 ${sliderZ} h-[500px] md:h-[670px]`}>
         <Swiper
-          navigation={false}
-          modules={[Pagination]}
-          pagination={{ clickable: true }}
-          className="w-full max-w-2xl h-[500px] md:max-w-full md:h-[670px]"
+       
+          // navigation={false}
+          modules={[Pagination, Navigation]}
+           navigation={{
+          nextEl: '.btn-next',
+          prevEl: '.btn-prev',
+        }}
+          // pagination={{ clickable: true }}
+          pagination={{
+          el: '.my-pagination',
+          clickable: true,
+          renderBullet: (index, className) => `<span class="${className} w-3 h-3 bg-[#ff4203] rounded-full mx-1 block cursor-pointer"></span>`
+        }}
+          className="sticky md:relative md:w-[100%] top-0 ${sliderZ} h-[500px] md:h-[670px]"
         >
           {fotos?.map((src, i) => (
             <SwiperSlide key={i} >
@@ -111,7 +117,16 @@ const fotos = [
               />
           </SwiperSlide>
           ))}
+        
+        
         </Swiper>
+        <div className='absolute z-50 bottom-[14px]  flex gap-2 w-full'>
+          <div className='flex flex-1 gap-2 pl-5 '>
+            <button className="btn-prev bg-[#ff4203] inline-block w-8 h-8 rounded-[8px] cursor-pointer">←</button>
+            <button className="btn-next bg-[#ff4203] inline-block w-8 h-8 rounded-[8px] cursor-pointer">→</button>
+          </div>
+          <div className='my-pagination flex flex-1 items-center justify-end pr-5'></div>
+        </div>
       </section>
 
 {data?.[0]?.acf && <section className='bg-white dark:bg-black relative rounded-t-sm shadow-lg md:max-w-full md:m-auto pt-4' ref={secondBlockRef} id="car-props">
@@ -131,9 +146,9 @@ const fotos = [
             /> 
             <p><span>4.9</span> з 5 на основі 13 відгуків</p>
         </div>
-        <div className="text-base md:text-[20px] font-semibold mt-4">Ціна у дилера <Currency />  {insertSpace(data?.[0]?.acf.calculator_props.car_price_ex_showroom)} (нетто)</div>
+        <div className="text-base md:text-[20px] font-semibold mt-4">Ціна у дилера <Currency />  {insertSpace(data?.[0]?.acf.calculator_props.car_price_ex_showroom)} {(location === 'nextcarpl' ) && '(нетто)'}</div>
         <div className="text-2xl md:text-[28px] font-semibold mt-4">
-          від <Currency />{lizing && insertSpace(lizing.toFixed(0))} <span className="text-[#b9b9b9]">/міс. (нетто)</span>
+          від <Currency />{lizing && insertSpace(lizing.toFixed(0))} <span className="text-[#b9b9b9]">/міс.  {(location === 'nextcarpl' ) && '(нетто)'}</span>
         </div>
         <button className="cursor-pointer w-full redGradient text-white rounded-[10px] text-sm flex items-center justify-center p-[8px] md:max-w-[224px] mt-5" onClick={() => {setActiveTarif('Лізінг'); setVisible1(true)}}> Отримати умови</button>
         <div className="text-[#fff] text-sm py-3 md:text-base" >{data[0].acf.hash}</div>
@@ -171,12 +186,11 @@ const fotos = [
       </div>
     </section>}
     
-    <PortalComponent visible={visible2} onClose={() => setVisible1(false)} >
-                      <QuizForm closeForm={() => setVisible1(false)} />
-                  </PortalComponent>
+      <PortalComponent visible={visible2} onClose={() => setVisible1(false)} >
+        <QuizForm closeForm={() => setVisible1(false)} />
+      </PortalComponent>
     </div>
         
-     
     )
 
 }
